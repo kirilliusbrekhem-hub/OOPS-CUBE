@@ -7,3 +7,6 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
+
+declare module '@phosphor-icons/web/regular';
+declare module '@phosphor-icons/web/fill';

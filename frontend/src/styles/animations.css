@@ -1,0 +1,118 @@
+@keyframes oopsPulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes oopsRise {
+  0% {
+    opacity: 0;
+    transform: translateY(6px) scale(0.9);
+  }
+  22% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-40px) scale(1);
+  }
+}
+
+@keyframes oopsGround {
+  to {
+    background-position-x: -260px;
+  }
+}
+
+@keyframes oopsScroll {
+  from {
+    transform: translateX(340px);
+  }
+  to {
+    transform: translateX(-120px);
+  }
+}
+
+@keyframes oopsJump {
+  0%,
+  42% {
+    transform: translateY(0) rotate(-4deg);
+  }
+  54% {
+    transform: translateY(-118px) rotate(6deg);
+  }
+  62% {
+    transform: translateY(-128px) rotate(9deg);
+  }
+  82% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  88% {
+    transform: translateY(-9px) rotate(-5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(-4deg);
+  }
+}
+
+@keyframes oopsShadow {
+  0%,
+  42% {
+    transform: scaleX(1);
+    opacity: 0.5;
+  }
+  60% {
+    transform: scaleX(0.45);
+    opacity: 0.18;
+  }
+  82%,
+  100% {
+    transform: scaleX(1);
+    opacity: 0.5;
+  }
+}
+
+@keyframes oopsBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes oopsSpin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes obstacleApproach {
+  from {
+    transform: translateX(220px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes oopsBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
