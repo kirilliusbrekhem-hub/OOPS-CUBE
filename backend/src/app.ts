@@ -1,17 +1,22 @@
 import cors from 'cors';
 import express, { Express } from 'express';
+import type Redis from 'ioredis';
 import { Pool } from 'pg';
 import { pool as defaultPool } from './db/pool';
+import { redis as defaultRedis } from './lib/redis';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 import { authRouter } from './modules/auth/router';
+import { gameRouter } from './modules/game/router';
 import { playersRouter } from './modules/players/router';
 
 export interface AppDeps {
   pool?: Pool;
+  redis?: Redis;
 }
 
 export function createApp(deps: AppDeps = {}): Express {
   const pool = deps.pool ?? defaultPool;
+  const redis = deps.redis ?? defaultRedis;
   const app = express();
 
   app.use(cors());
@@ -23,6 +28,7 @@ export function createApp(deps: AppDeps = {}): Express {
 
   app.use('/api/auth', authRouter(pool));
   app.use('/api/players', playersRouter(pool));
+  app.use('/api/game', gameRouter(pool, redis));
 
   app.use(notFoundHandler);
   app.use(errorHandler);

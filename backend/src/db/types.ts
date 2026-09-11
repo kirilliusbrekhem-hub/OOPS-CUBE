@@ -1,3 +1,16 @@
+export interface GameSessionRow {
+  id: string;
+  player_id: string;
+  status: 'active' | 'ended';
+  server_score: number;
+  server_distance: number;
+  reward_amount: number;
+  idempotency_key: string | null;
+  started_at: Date;
+  last_checkpoint_at: Date | null;
+  ended_at: Date | null;
+}
+
 export interface PlayerRow {
   id: string;
   is_guest: boolean;
