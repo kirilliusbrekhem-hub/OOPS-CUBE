@@ -62,6 +62,19 @@ export interface PlayerStreakRow {
   last_completed_date: string | null;
 }
 
+export interface TopupOrderRow {
+  id: string;
+  player_id: string;
+  package_code: string;
+  cubes_amount: number;
+  price_amount: number;
+  price_currency: 'RUB' | 'USD';
+  provider: 'stub';
+  status: 'pending' | 'completed' | 'failed';
+  created_at: Date;
+  completed_at: Date | null;
+}
+
 export interface PlayerRow {
   id: string;
   is_guest: boolean;

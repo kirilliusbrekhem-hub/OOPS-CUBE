@@ -7,5 +7,6 @@ import m0005 from './0005_quests';
 import m0006 from './0006_daily_tasks';
 import m0007 from './0007_future_token_ledger';
 import m0008 from './0008_seed_quests_and_dailies';
+import m0009 from './0009_topup_orders';
 
-export const migrations: Migration[] = [m0001, m0002, m0003, m0004, m0005, m0006, m0007, m0008];
+export const migrations: Migration[] = [m0001, m0002, m0003, m0004, m0005, m0006, m0007, m0008, m0009];
