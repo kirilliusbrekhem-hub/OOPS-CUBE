@@ -12,6 +12,7 @@ import { leaderboardRouter } from './modules/leaderboard/router';
 import { playersRouter } from './modules/players/router';
 import { questsRouter } from './modules/quests/router';
 import { topupRouter } from './modules/topup/router';
+import { walletRouter } from './modules/wallet/router';
 
 export interface AppDeps {
   pool?: Pool;
@@ -37,6 +38,7 @@ export function createApp(deps: AppDeps = {}): Express {
   app.use('/api/quests', questsRouter(pool));
   app.use('/api/dailies', dailiesRouter(pool));
   app.use('/api/topup', topupRouter(pool));
+  app.use('/api/wallet', walletRouter(pool));
 
   app.use(notFoundHandler);
   app.use(errorHandler);
