@@ -1,4 +1,4 @@
-import { Pool } from 'pg';
+import { Pool, PoolClient } from 'pg';
 
 export interface LeaderboardRow {
   id: string;
@@ -30,7 +30,7 @@ export async function countPlayers(pool: Pool): Promise<number> {
   return Number(rows[0].count);
 }
 
-export async function getPlayerRank(pool: Pool, playerId: string): Promise<RankedRow | null> {
+export async function getPlayerRank(pool: Pool | PoolClient, playerId: string): Promise<RankedRow | null> {
   const { rows } = await pool.query<RankedRow>(
     `SELECT id, display_name, best_score, rank FROM (
        SELECT id, display_name, best_score,

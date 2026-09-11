@@ -1,6 +1,7 @@
 import { Pool } from 'pg';
 import { ApiError } from '../../middleware/errorHandler';
 import { GameSessionRow, PlayerRow } from '../../db/types';
+import { applySessionProgress } from '../progress/hook';
 import * as repo from './repository';
 
 // Anti-cheat bounds: server clamps client-reported deltas to what's
@@ -90,6 +91,11 @@ export async function endSession(
       finalized.server_score,
       finalized.server_distance,
     );
+    await applySessionProgress(client, playerId, {
+      serverScore: finalized.server_score,
+      serverDistance: finalized.server_distance,
+      rewardAmount,
+    });
 
     await client.query('COMMIT');
     return { session: finalized, player };

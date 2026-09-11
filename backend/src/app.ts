@@ -6,9 +6,11 @@ import { pool as defaultPool } from './db/pool';
 import { redis as defaultRedis } from './lib/redis';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 import { authRouter } from './modules/auth/router';
+import { dailiesRouter } from './modules/dailies/router';
 import { gameRouter } from './modules/game/router';
 import { leaderboardRouter } from './modules/leaderboard/router';
 import { playersRouter } from './modules/players/router';
+import { questsRouter } from './modules/quests/router';
 
 export interface AppDeps {
   pool?: Pool;
@@ -31,6 +33,8 @@ export function createApp(deps: AppDeps = {}): Express {
   app.use('/api/players', playersRouter(pool));
   app.use('/api/game', gameRouter(pool, redis));
   app.use('/api/leaderboard', leaderboardRouter(pool, redis));
+  app.use('/api/quests', questsRouter(pool));
+  app.use('/api/dailies', dailiesRouter(pool));
 
   app.use(notFoundHandler);
   app.use(errorHandler);
