@@ -6,6 +6,54 @@ export async function listActiveQuests(pool: Pool | PoolClient): Promise<QuestRo
   return rows;
 }
 
+export async function listAllQuests(pool: Pool | PoolClient): Promise<QuestRow[]> {
+  const { rows } = await pool.query<QuestRow>('SELECT * FROM quests ORDER BY created_at');
+  return rows;
+}
+
+export interface CreateQuestInput {
+  code: string;
+  title: string;
+  metric: ObjectiveMetric;
+  threshold: number | null;
+  target: number;
+  rewardAmount: number;
+  paysIn: 'cubes' | 'future_token';
+}
+
+export async function createQuest(pool: Pool | PoolClient, input: CreateQuestInput): Promise<QuestRow> {
+  const { rows } = await pool.query<QuestRow>(
+    `INSERT INTO quests (code, title, metric, threshold, target, reward_amount, pays_in)
+     VALUES ($1, $2, $3, $4, $5, $6, $7)
+     RETURNING *`,
+    [input.code, input.title, input.metric, input.threshold, input.target, input.rewardAmount, input.paysIn],
+  );
+  return rows[0];
+}
+
+export interface UpdateQuestInput {
+  title?: string;
+  rewardAmount?: number;
+  active?: boolean;
+}
+
+export async function updateQuest(
+  pool: Pool | PoolClient,
+  id: string,
+  input: UpdateQuestInput,
+): Promise<QuestRow | null> {
+  const { rows } = await pool.query<QuestRow>(
+    `UPDATE quests SET
+       title = COALESCE($2, title),
+       reward_amount = COALESCE($3, reward_amount),
+       active = COALESCE($4, active)
+     WHERE id = $1
+     RETURNING *`,
+    [id, input.title ?? null, input.rewardAmount ?? null, input.active ?? null],
+  );
+  return rows[0] ?? null;
+}
+
 export async function getQuestById(pool: Pool | PoolClient, id: string): Promise<QuestRow | null> {
   const { rows } = await pool.query<QuestRow>('SELECT * FROM quests WHERE id = $1', [id]);
   return rows[0] ?? null;

@@ -10,7 +10,7 @@ export async function creditCubes(
   reason: CubeReason,
   referenceId: string | null,
 ): Promise<PlayerRow> {
-  if (amount > 0) {
+  if (amount !== 0) {
     await client.query(
       `INSERT INTO currency_ledger (player_id, amount, reason, reference_id) VALUES ($1, $2, $3, $4)`,
       [playerId, amount, reason, referenceId],

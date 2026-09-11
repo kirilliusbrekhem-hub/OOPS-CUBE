@@ -5,6 +5,7 @@ import { Pool } from 'pg';
 import { pool as defaultPool } from './db/pool';
 import { redis as defaultRedis } from './lib/redis';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
+import { adminRouter } from './modules/admin/router';
 import { authRouter } from './modules/auth/router';
 import { dailiesRouter } from './modules/dailies/router';
 import { gameRouter } from './modules/game/router';
@@ -39,6 +40,7 @@ export function createApp(deps: AppDeps = {}): Express {
   app.use('/api/dailies', dailiesRouter(pool));
   app.use('/api/topup', topupRouter(pool));
   app.use('/api/wallet', walletRouter(pool));
+  app.use('/api/admin', adminRouter(pool));
 
   app.use(notFoundHandler);
   app.use(errorHandler);

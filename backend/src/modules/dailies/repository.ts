@@ -6,6 +6,53 @@ export async function listActiveDailyTasks(pool: Pool | PoolClient): Promise<Dai
   return rows;
 }
 
+export async function listAllDailyTasks(pool: Pool | PoolClient): Promise<DailyTaskRow[]> {
+  const { rows } = await pool.query<DailyTaskRow>('SELECT * FROM daily_tasks ORDER BY created_at');
+  return rows;
+}
+
+export interface CreateDailyTaskInput {
+  code: string;
+  title: string;
+  metric: Exclude<ObjectiveMetric, 'leaderboard_rank'>;
+  threshold: number | null;
+  target: number;
+  rewardAmount: number;
+}
+
+export async function createDailyTask(pool: Pool | PoolClient, input: CreateDailyTaskInput): Promise<DailyTaskRow> {
+  const { rows } = await pool.query<DailyTaskRow>(
+    `INSERT INTO daily_tasks (code, title, metric, threshold, target, reward_amount)
+     VALUES ($1, $2, $3, $4, $5, $6)
+     RETURNING *`,
+    [input.code, input.title, input.metric, input.threshold, input.target, input.rewardAmount],
+  );
+  return rows[0];
+}
+
+export interface UpdateDailyTaskInput {
+  title?: string;
+  rewardAmount?: number;
+  active?: boolean;
+}
+
+export async function updateDailyTask(
+  pool: Pool | PoolClient,
+  id: string,
+  input: UpdateDailyTaskInput,
+): Promise<DailyTaskRow | null> {
+  const { rows } = await pool.query<DailyTaskRow>(
+    `UPDATE daily_tasks SET
+       title = COALESCE($2, title),
+       reward_amount = COALESCE($3, reward_amount),
+       active = COALESCE($4, active)
+     WHERE id = $1
+     RETURNING *`,
+    [id, input.title ?? null, input.rewardAmount ?? null, input.active ?? null],
+  );
+  return rows[0] ?? null;
+}
+
 export async function getDailyTaskById(pool: Pool | PoolClient, id: string): Promise<DailyTaskRow | null> {
   const { rows } = await pool.query<DailyTaskRow>('SELECT * FROM daily_tasks WHERE id = $1', [id]);
   return rows[0] ?? null;

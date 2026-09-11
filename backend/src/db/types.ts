@@ -75,6 +75,13 @@ export interface TopupOrderRow {
   completed_at: Date | null;
 }
 
+export interface AdminUserRow {
+  id: string;
+  username: string;
+  password_hash: string;
+  created_at: Date;
+}
+
 export interface PlayerRow {
   id: string;
   is_guest: boolean;
