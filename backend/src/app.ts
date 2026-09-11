@@ -4,6 +4,7 @@ import { Pool } from 'pg';
 import { pool as defaultPool } from './db/pool';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 import { authRouter } from './modules/auth/router';
+import { playersRouter } from './modules/players/router';
 
 export interface AppDeps {
   pool?: Pool;
@@ -21,6 +22,7 @@ export function createApp(deps: AppDeps = {}): Express {
   });
 
   app.use('/api/auth', authRouter(pool));
+  app.use('/api/players', playersRouter(pool));
 
   app.use(notFoundHandler);
   app.use(errorHandler);
