@@ -7,6 +7,7 @@ import { redis as defaultRedis } from './lib/redis';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 import { authRouter } from './modules/auth/router';
 import { gameRouter } from './modules/game/router';
+import { leaderboardRouter } from './modules/leaderboard/router';
 import { playersRouter } from './modules/players/router';
 
 export interface AppDeps {
@@ -29,6 +30,7 @@ export function createApp(deps: AppDeps = {}): Express {
   app.use('/api/auth', authRouter(pool));
   app.use('/api/players', playersRouter(pool));
   app.use('/api/game', gameRouter(pool, redis));
+  app.use('/api/leaderboard', leaderboardRouter(pool, redis));
 
   app.use(notFoundHandler);
   app.use(errorHandler);
