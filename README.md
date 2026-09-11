@@ -1,25 +1,97 @@
-# CODING AGENTS: READ THIS FIRST
+# !OOPS! CUBE
 
-This is a **handoff bundle** from Claude Design (claude.ai/design).
+A browser endless-runner with a guest-first onboarding flow, server-authoritative
+scoring, quests/daily tasks with a login streak, an in-game currency (CUBES) with
+a top-up stub, and bookkeeping for a possible future token (OP$) — no real
+payments and no real blockchain integration are wired up yet, by design.
 
-A user mocked up designs in HTML/CSS/JS using an AI design tool, then exported this bundle so a coding agent can implement the designs for real.
+Visual design source: `project/OOPS CUBE.dc.html` (a Claude Design handoff bundle;
+`chats/` has the original design conversation for context).
 
-## What you should do — IMPORTANT
+## Stack
 
-**Read the chat transcripts first.** There are 1 chat transcript(s) in `chats/`. The transcripts show the full back-and-forth between the user and the design assistant — they tell you **what the user actually wants** and **where they landed** after iterating. Don't skip them. The final HTML files are the output, but the chat is where the intent lives.
+- **Backend**: Node.js, TypeScript, Express, PostgreSQL (`pg`), Redis (`ioredis`)
+- **Frontend**: React, TypeScript, Vite, React Router
 
-**Read `project/OOPS CUBE.dc.html` in full.** The user had this file open when they triggered the handoff, so it's almost certainly the primary design they want built. Read it top to bottom — don't skim. Then **follow its imports**: open every file it pulls in (shared components, CSS, scripts) so you understand how the pieces fit together before you start implementing.
+## Repo layout
 
-**If anything is ambiguous, ask the user to confirm before you start implementing.** It's much cheaper to clarify scope up front than to build the wrong thing.
+```
+backend/   REST API — see backend/src/modules/*/router.ts for the full endpoint list
+frontend/  React app — see frontend/src/screens for the 9 screens
+project/   Original design mockup (reference only)
+chats/     Original design conversation (reference only)
+```
 
-## About the design files
+## Local development
 
-The design medium is **HTML/CSS/JS** — these are prototypes, not production code. Your job is to **recreate them pixel-perfectly** in whatever technology makes sense for the target codebase (React, Vue, native, whatever fits). Match the visual output; don't copy the prototype's internal structure unless it happens to fit.
+Prerequisites: Node 20+, PostgreSQL 16, Redis 7 running locally.
 
-**Don't render these files in a browser or take screenshots unless the user asks you to.** Everything you need — dimensions, colors, layout rules — is spelled out in the source. Read the HTML and CSS directly; a screenshot won't tell you anything they don't.
+```bash
+# Backend
+cd backend
+cp .env.example .env        # edit DATABASE_URL/REDIS_URL/JWT secrets if needed
+npm install
+npm run migrate              # applies all migrations, safe to re-run
+npm run dev                  # http://localhost:8080
 
-## Bundle contents
+# Frontend (separate terminal)
+cd frontend
+npm install
+npm run dev                  # http://localhost:5173, talks to VITE_API_URL (.env.development)
+```
 
-- `README.md` — this file
-- `chats/` — conversation transcripts (read these!)
-- `project/` — the `UI mockups for game field` project files (HTML prototypes, assets, components)
+Create an admin account (needed for `/api/admin/*`, including manually completing
+a top-up order in place of the not-yet-built payment webhook):
+
+```bash
+cd backend
+npm run create-admin -- <username> <password>
+```
+
+## Tests
+
+Backend tests are integration tests against a real Postgres + Redis (no mocks for
+the DB layer). Point them at throwaway databases before running:
+
+```bash
+cd backend
+createdb oops_cube_test   # once
+TEST_DATABASE_URL=postgres://postgres:postgres@localhost:5432/oops_cube_test \
+TEST_REDIS_URL=redis://localhost:6379/1 \
+npm test
+```
+
+```bash
+cd frontend
+npm test
+```
+
+## Deployment notes
+
+These constraints were deliberate, not accidental — keep them if you change the
+build:
+
+- One Postgres database, one Redis instance. No additional background services.
+- `backend/tsconfig.json` sets `module: "CommonJS"` and nothing else module-related
+  (no `moduleResolution`) — that combination is what stays stable across
+  TypeScript versions. `tsconfig.build.json` extends it and excludes `tests/`, so
+  test files never ship in the production build.
+- If your host sets `NODE_ENV=production` during the build step, install dev
+  dependencies explicitly first (`npm install --include=dev`) or the TypeScript
+  compiler won't be present to run `npm run build`.
+- Config files (`package.json`, `tsconfig*.json`) are kept as compact single-line
+  JSON so they survive being hand-copied without depending on exact indentation.
+- Run `npm run migrate` once against the production database after deploying a
+  new backend version (or wire it into your deploy pipeline's release step).
+
+## Known scope cuts (intentional, for a follow-up)
+
+- No real payment provider: `POST /api/topup/webhook/stripe` is a stubbed 501
+  with a TODO; top-up orders stay `pending` until an admin manually completes
+  them via `POST /api/admin/topup-orders/:id/complete`.
+- No real blockchain integration: `future_token_ledger` is pure bookkeeping.
+  There is no wallet connection, no contract, no token — the UI says so.
+- The streak's reward bonus multiplier is computed and shown, but not yet
+  applied to actual reward crediting.
+- Leaderboard's "Friends" / "Today" tabs are visual only (Global is the only
+  implemented scope).
