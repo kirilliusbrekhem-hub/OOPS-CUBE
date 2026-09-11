@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/nocturne-520b98d7-8b16-4cd7-92db-77239842b855/styles.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<script src="_ds/nocturne-520b98d7-8b16-4cd7-92db-77239842b855/_ds_bundle.js"></script>
+<style>
+body{margin:0;background:#0d0f18;font-family:"Inter",system-ui,sans-serif}
+.dv-turn{padding:44px 48px 36px;scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 24px}
+.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#b5abfc;color:#161826;border-radius:4px;text-decoration:none}
+.dv-tname{font:500 13px/1.2 "Inter",system-ui,sans-serif;color:#e9e9ed}
+.dv-opts{display:flex;flex-wrap:wrap;gap:34px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(233,233,237,.1);color:#e9e9ed;border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 "Inter",system-ui,sans-serif;color:#9397ab}
+.dv-card{background:#161826;border-radius:22px;box-shadow:0 0 0 1px #3f424d,0 18px 44px rgba(0,0,0,.7);overflow:hidden}
+.dv-opt:target .dv-oid{background:#b5abfc;color:#161826}
+.dv-next{margin:26px 0 0;font:12px/1.6 "Inter",system-ui,sans-serif;color:#9397ab}
+a{color:#b5abfc}a:hover{color:#d2cefd}
+@keyframes oopsPulse{0%,100%{opacity:.35;transform:scale(1)}50%{opacity:.9;transform:scale(1.06)}}
+@keyframes oopsRise{0%{opacity:0;transform:translateY(6px) scale(.9)}22%{opacity:1;transform:translateY(-4px) scale(1)}100%{opacity:0;transform:translateY(-40px) scale(1)}}
+@keyframes oopsGround{to{background-position-x:-260px}}
+@keyframes oopsScroll{from{transform:translateX(340px)}to{transform:translateX(-120px)}}
+@keyframes oopsJump{0%,42%{transform:translateY(0) rotate(-4deg)}54%{transform:translateY(-118px) rotate(6deg)}62%{transform:translateY(-128px) rotate(9deg)}82%{transform:translateY(0) rotate(-2deg)}88%{transform:translateY(-9px) rotate(-5deg)}100%{transform:translateY(0) rotate(-4deg)}}
+@keyframes oopsShadow{0%,42%{transform:scaleX(1);opacity:.5}60%{transform:scaleX(.45);opacity:.18}82%,100%{transform:scaleX(1);opacity:.5}}
+@keyframes oopsBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes oopsSpin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+@keyframes oopsBlink{0%,100%{opacity:1}50%{opacity:.35}}
+</style></helmet>
+
+<section class="dv-turn" id="t2">
+<div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">v2 — mascot only where it earns it · live run animation · CUBES (in-game, free) vs !OOPS! OP$ (real TON coin)</span></div>
+<div class="dv-opts">
+
+<!-- ══ 2a HOME ══ -->
+<div class="dv-opt" id="2a"><div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a>Home — mascot logo lives here</div>
+<div class="dv-card" style="width:390px">
+<div data-screen-label="01 Home" style="width:390px;height:844px;background:var(--color-bg);position:relative;overflow:hidden;display:flex;flex-direction:column">
+  <div style="position:absolute;top:-120px;left:-60px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(145,132,217,.26),transparent 68%)"></div>
+
+  <div style="position:relative;display:flex;align-items:center;justify-content:space-between;padding:18px 20px 0">
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 11px 6px 8px;border-radius:999px;background:rgba(35,37,50,.85);box-shadow:0 0 0 1px #3f424d">
+      <svg width="15" height="17" viewBox="0 0 100 116"><polygon points="50,0 100,29 50,58 0,29" fill="#b5abfc"></polygon><polygon points="0,29 50,58 50,116 0,87" fill="#5d5294"></polygon><polygon points="100,29 50,58 50,116 100,87" fill="#9184d9"></polygon></svg>
+      <span style="font:600 14px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#e9e9ed">12,480</span>
+      <span style="font:500 10px/1 'Inter',sans-serif;letter-spacing:.06em;color:#9397ab">CUBES</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:9px">
+      <a href="#2i" style="display:flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;box-shadow:inset 0 0 0 1px #423a6a;font:600 10px/1 'Inter',sans-serif;letter-spacing:.08em;color:#b5abfc;text-decoration:none">OP$</a>
+      <div style="width:34px;height:34px;border-radius:10px;background:linear-gradient(140deg,#423a6a,#262a60);box-shadow:0 0 0 1px #595d6c;display:flex;align-items:center;justify-content:center;font:600 12px/1 'Inter',sans-serif;color:#d2cefd">G</div>
+    </div>
+  </div>
+
+  <div style="position:relative;flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 24px">
+    <div style="position:relative;width:326px;height:326px;margin:0 0 4px;align-self:center">
+      <div style="position:absolute;inset:6px;border-radius:50%;background:radial-gradient(circle,rgba(145,132,217,.3),transparent 66%);animation:oopsPulse 3.6s ease-in-out infinite"></div>
+      <img class="lighten" src="assets/oops-logo.png" alt="!OOPS! CUBE" style="position:relative;width:326px;height:326px;object-fit:contain;animation:oopsBob 4.2s ease-in-out infinite">
+    </div>
+    <p style="margin:0;max-width:260px;font:400 15px/1.45 'Inter',sans-serif;color:#b2b6ca;text-wrap:pretty">One tap. One jump. The wall does not negotiate.</p>
+  </div>
+
+  <div style="position:relative;padding:0 20px 20px;display:flex;flex-direction:column;gap:14px">
+    <a href="#2b" style="display:flex;align-items:center;justify-content:center;gap:10px;height:66px;border-radius:16px;background:rgba(181,171,252,.07);box-shadow:inset 0 0 0 1.5px #b5abfc,0 0 34px rgba(145,132,217,.35);font:600 22px/1 'Inter',sans-serif;letter-spacing:.16em;color:#d2cefd;text-decoration:none"><i class="ph-fill ph-play" style="font-size:18px"></i>PLAY</a>
+
+    <div style="display:flex;flex-direction:column;gap:2px">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin:0 2px 8px">
+        <span style="font:500 10px/1 'Inter',sans-serif;letter-spacing:.14em;color:#9397ab">WORLD TOP</span>
+        <a href="#2d" style="font:500 11px/1 'Inter',sans-serif;color:#9184d9;text-decoration:none">All 1.2M →</a>
+      </div>
+      <div style="display:grid;grid-template-columns:26px 1fr auto;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;background:rgba(38,42,96,.55);box-shadow:0 0 0 1px #423a6a"><span style="font:600 12px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#b5abfc">01</span><span style="font:500 14px/1 'Inter',sans-serif;color:#e9e9ed">wallstreetcube</span><span style="font:600 13px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#d2cefd">184,902</span></div>
+      <div style="display:grid;grid-template-columns:26px 1fr auto;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;background:rgba(35,37,50,.6)"><span style="font:600 12px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#9397ab">02</span><span style="font:500 14px/1 'Inter',sans-serif;color:#cfd3e5">not_a_rugpull</span><span style="font:600 13px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#b2b6ca">171,338</span></div>
+      <div style="display:grid;grid-template-columns:26px 1fr auto;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;background:rgba(35,37,50,.6)"><span style="font:600 12px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#9397ab">03</span><span style="font:500 14px/1 'Inter',sans-serif;color:#cfd3e5">tonmaxi.ton</span><span style="font:600 13px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#b2b6ca">160,514</span></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);align-items:center;padding-top:10px;background:linear-gradient(to right,transparent,rgba(233,233,237,.16) 48px,rgba(233,233,237,.16) calc(100% - 48px),transparent) top/100% 1px no-repeat">
+      <a href="#2a" style="display:flex;justify-content:center;font-size:21px;color:#b5abfc;text-decoration:none"><i class="ph-fill ph-house"></i></a>
+      <a href="#2d" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-trophy"></i></a>
+      <a href="#2e" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-target"></i></a>
+      <a href="#2f" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-plus-circle"></i></a>
+      <a href="#2i" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-currency-circle-dollar"></i></a>
+      <a href="#2g" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-user"></i></a>
+    </div>
+  </div>
+</div>
+</div></div>
+
+<!-- ══ 2b GAME — live ══ -->
+<div class="dv-opt" id="2b"><div class="dv-olabel"><a class="dv-oid" href="#2b">2b</a>Run — animated: scrolling ground, incoming walls, jump cycle, live score</div>
+<div class="dv-card" style="width:390px">
+<div data-screen-label="02 Run" style="width:390px;height:844px;background:linear-gradient(180deg,#1b1e33 0%,#161826 52%,#0f111c 100%);position:relative;overflow:hidden">
+
+  <div style="position:absolute;left:0;right:0;top:120px;height:1px;background:linear-gradient(to right,transparent,rgba(145,132,217,.3),transparent)"></div>
+
+  <div style="position:relative;display:flex;align-items:flex-start;justify-content:space-between;padding:20px 20px 0">
+    <div>
+      <div style="font:500 9px/1 'Inter',sans-serif;letter-spacing:.2em;color:#75798c;margin-bottom:6px">SCORE</div>
+      <div style="font:700 52px/.86 'Inter',sans-serif;letter-spacing:-.04em;font-variant-numeric:tabular-nums;color:#e9e9ed">{{ score }}</div>
+    </div>
+    <div style="text-align:right">
+      <div style="font:500 9px/1 'Inter',sans-serif;letter-spacing:.2em;color:#75798c;margin-bottom:6px">TIME</div>
+      <div style="font:600 26px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#b5abfc">{{ clock }}</div>
+      <div style="width:92px;height:3px;border-radius:2px;background:#292b31;margin-top:8px;overflow:hidden"><div style="width:58%;height:100%;background:#b5abfc;box-shadow:0 0 12px rgba(181,171,252,.9)"></div></div>
+    </div>
+  </div>
+
+  <div style="position:relative;display:flex;align-items:center;gap:7px;padding:16px 20px 0">
+    <span style="font:500 9px/1 'Inter',sans-serif;letter-spacing:.18em;color:#b5abfc;animation:oopsBlink 1.1s ease-in-out infinite">×3 COMBO</span>
+    <span style="flex:1;height:1px;background:linear-gradient(to right,rgba(181,171,252,.5),transparent)"></span>
+    <span style="font:600 11px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#9397ab">{{ distance }} m</span>
+  </div>
+
+  <div style="position:absolute;left:0;right:0;top:290px;bottom:150px;overflow:hidden">
+    <div style="position:absolute;left:0;right:0;bottom:118px;height:2px;background:linear-gradient(to right,transparent,#9184d9,#9184d9,transparent)"></div>
+    <div style="position:absolute;left:-260px;right:-260px;bottom:0;height:118px;background:repeating-linear-gradient(105deg,rgba(145,132,217,.14) 0 1px,transparent 1px 26px);animation:oopsGround 1.1s linear infinite"></div>
+
+    <div style="position:absolute;left:0;bottom:120px;width:44px;height:132px;border-radius:3px;background:linear-gradient(180deg,#3f424d,#232532);box-shadow:inset 0 0 0 1px #595d6c;animation:oopsScroll 2.4s linear infinite"></div>
+    <div style="position:absolute;left:0;bottom:120px;width:44px;height:64px;border-radius:3px;background:linear-gradient(180deg,#3f424d,#232532);box-shadow:inset 0 0 0 1px #595d6c;animation:oopsScroll 2.4s linear -1.2s infinite"></div>
+    <div style="position:absolute;left:0;bottom:120px;width:30px;height:30px;border-radius:3px;background:#292b31;box-shadow:inset 0 0 0 1px #423a6a;animation:oopsScroll 2.4s linear -1.9s infinite"></div>
+
+    <div style="position:absolute;left:0;bottom:236px;width:22px;height:26px;animation:oopsScroll 2.4s linear -.55s infinite"><svg width="22" height="26" viewBox="0 0 100 116"><polygon points="50,0 100,29 50,58 0,29" fill="#d2cefd"></polygon><polygon points="0,29 50,58 50,116 0,87" fill="#5d5294"></polygon><polygon points="100,29 50,58 50,116 100,87" fill="#9184d9"></polygon></svg></div>
+    <div style="position:absolute;left:0;bottom:258px;width:22px;height:26px;animation:oopsScroll 2.4s linear -.75s infinite"><svg width="22" height="26" viewBox="0 0 100 116"><polygon points="50,0 100,29 50,58 0,29" fill="#d2cefd"></polygon><polygon points="0,29 50,58 50,116 0,87" fill="#5d5294"></polygon><polygon points="100,29 50,58 50,116 100,87" fill="#9184d9"></polygon></svg></div>
+    <div style="position:absolute;left:0;bottom:236px;width:22px;height:26px;animation:oopsScroll 2.4s linear -1.55s infinite"><svg width="22" height="26" viewBox="0 0 100 116"><polygon points="50,0 100,29 50,58 0,29" fill="#d2cefd"></polygon><polygon points="0,29 50,58 50,116 0,87" fill="#5d5294"></polygon><polygon points="100,29 50,58 50,116 100,87" fill="#9184d9"></polygon></svg></div>
+
+    <div style="position:absolute;left:48px;bottom:112px;width:88px;height:12px;border-radius:50%;background:rgba(0,0,0,.55);filter:blur(5px);animation:oopsShadow 2.4s cubic-bezier(.3,0,.4,1) infinite"></div>
+    <div style="position:absolute;left:52px;bottom:118px;width:82px;height:104px;animation:oopsJump 2.4s cubic-bezier(.3,0,.4,1) infinite">
+      <div style="position:absolute;inset:-22px;border-radius:50%;background:radial-gradient(circle,rgba(181,171,252,.3),transparent 70%)"></div>
+      <img class="lighten" src="assets/oops-runner.png" alt="" style="position:relative;width:82px;height:104px;object-fit:contain;filter:drop-shadow(0 12px 18px rgba(0,0,0,.6))">
+    </div>
+
+    <div style="position:absolute;left:96px;bottom:250px;display:flex;align-items:center;gap:6px;padding:7px 13px 7px 10px;border-radius:999px;background:rgba(38,42,96,.92);box-shadow:0 0 0 1px #b5abfc,0 0 28px rgba(181,171,252,.45);animation:oopsRise 2.4s ease-out infinite">
+      <svg width="13" height="15" viewBox="0 0 100 116"><polygon points="50,0 100,29 50,58 0,29" fill="#f5f4ff"></polygon><polygon points="0,29 50,58 50,116 0,87" fill="#5d5294"></polygon><polygon points="100,29 50,58 50,116 100,87" fill="#b5abfc"></polygon></svg>
+      <span style="font:700 17px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#f5f4ff">+240</span>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:0;right:0;bottom:0;padding:0 20px 26px;display:flex;align-items:flex-end;justify-content:space-between">
+    <div style="display:flex;align-items:center;gap:9px">
+      <svg width="14" height="16" viewBox="0 0 100 116"><polygon points="50,0 100,29 50,58 0,29" fill="#b5abfc"></polygon><polygon points="0,29 50,58 50,116 0,87" fill="#5d5294"></polygon><polygon points="100,29 50,58 50,116 100,87" fill="#9184d9"></polygon></svg>
+      <span style="font:600 17px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#e9e9ed">{{ balance }}</span>
+      <span style="font:500 10px/1 'Inter',sans-serif;letter-spacing:.06em;color:#9397ab">CUBES</span>
+    </div>
+    <div onClick="{{ jump }}" style="display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer">
+      <div style="width:58px;height:58px;border-radius:50%;box-shadow:inset 0 0 0 1.5px rgba(181,171,252,.55);display:flex;align-items:center;justify-content:center"><span style="width:12px;height:12px;border-radius:50%;background:#b5abfc;box-shadow:0 0 18px rgba(181,171,252,.9);animation:oopsPulse 2.4s ease-in-out infinite"></span></div>
+      <span style="font:500 9px/1 'Inter',sans-serif;letter-spacing:.2em;color:#75798c">TAP TO JUMP</span>
+    </div>
+  </div>
+</div>
+</div></div>
+
+<!-- ══ 2c RESULT ══ -->
+<div class="dv-opt" id="2c"><div class="dv-olabel"><a class="dv-oid" href="#2c">2c</a>Round over — CUBES earned, quest progress</div>
+<div class="dv-card" style="width:390px">
+<div data-screen-label="03 Result" style="width:390px;height:844px;background:linear-gradient(180deg,#262a60 0%,#1c1f3d 46%,#161826 100%);position:relative;overflow:hidden;display:flex;flex-direction:column">
+  <div style="position:absolute;top:-90px;right:-90px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(76,83,151,.55),transparent 68%)"></div>
+
+  <div style="position:relative;padding:64px 24px 0;display:flex;align-items:center;gap:16px">
+    <img class="lighten" src="assets/oops-runner.png" alt="" style="width:84px;height:100px;object-fit:contain;flex:none">
+    <div>
+      <div style="display:flex;align-items:center;gap:5px;margin-bottom:8px">
+        <span style="width:4px;height:32px;border-radius:2px;background:#b5abfc"></span>
+        <span style="font:700 34px/1 'Inter',sans-serif;letter-spacing:-.04em;color:#f5f4ff">OOPS</span>
+        <span style="width:4px;height:32px;border-radius:2px;background:#b5abfc"></span>
+      </div>
+      <p style="margin:0;font:400 14px/1.4 'Inter',sans-serif;color:#b5afe8">You met the wall at 1,240 m.</p>
+    </div>
+  </div>
+
+  <div style="position:relative;padding:30px 24px 0">
+    <div style="font:500 9px/1 'Inter',sans-serif;letter-spacing:.2em;color:#a7a1db;margin-bottom:8px">EARNED THIS RUN</div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <svg width="34" height="39" viewBox="0 0 100 116" style="filter:drop-shadow(0 0 18px rgba(181,171,252,.6))"><polygon points="50,0 100,29 50,58 0,29" fill="#f5f4ff"></polygon><polygon points="0,29 50,58 50,116 0,87" fill="#5d5294"></polygon><polygon points="100,29 50,58 50,116 100,87" fill="#b5abfc"></polygon></svg>
+      <span style="font:700 62px/.86 'Inter',sans-serif;letter-spacing:-.045em;font-variant-numeric:tabular-nums;color:#f5f4ff">1,210</span>
+      <span style="font:500 13px/1 'Inter',sans-serif;letter-spacing:.08em;color:#b5afe8;align-self:flex-end;padding-bottom:6px">CUBES</span>
+    </div>
+  </div>
+
+  <div style="position:relative;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;margin:30px 24px 0;background:rgba(233,233,237,.12)">
+    <div style="background:#1b1e35;padding:14px 12px"><div style="font:500 9px/1 'Inter',sans-serif;letter-spacing:.14em;color:#9397ab;margin-bottom:6px">SCORE</div><div style="font:600 20px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#e9e9ed">4,812</div></div>
+    <div style="background:#1b1e35;padding:14px 12px"><div style="font:500 9px/1 'Inter',sans-serif;letter-spacing:.14em;color:#9397ab;margin-bottom:6px">BEST</div><div style="font:600 20px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#e9e9ed">6,104</div></div>
+    <div style="background:#1b1e35;padding:14px 12px"><div style="font:500 9px/1 'Inter',sans-serif;letter-spacing:.14em;color:#9397ab;margin-bottom:6px">RANK</div><div style="font:600 20px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#b5abfc">#1,204</div></div>
+  </div>
+
+  <div style="position:relative;margin:18px 24px 0;padding:13px 15px;border-radius:12px;background:rgba(35,37,50,.7);box-shadow:0 0 0 1px #423a6a;display:flex;align-items:center;gap:11px">
+    <i class="ph ph-target" style="font-size:19px;color:#b5abfc"></i>
+    <div style="flex:1"><div style="font:500 13px/1.25 'Inter',sans-serif;color:#e9e9ed">Daily quest advanced</div><div style="font:400 11px/1.3 'Inter',sans-serif;color:#9397ab">Survive 1,000 m — 2 of 3 done</div></div>
+    <a href="#2e" style="font:500 11px/1 'Inter',sans-serif;color:#9184d9;text-decoration:none">View</a>
+  </div>
+
+  <div style="flex:1"></div>
+
+  <div style="position:relative;padding:0 20px 30px;display:flex;flex-direction:column;gap:11px">
+    <sc-if value="{{ guest }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;align-items:center;gap:11px;padding:14px 15px;border-radius:14px;background:rgba(66,58,106,.5);box-shadow:0 0 0 1px #b5abfc">
+        <i class="ph ph-warning-diamond" style="font-size:20px;color:#d2cefd"></i>
+        <div style="flex:1"><div style="font:500 13px/1.25 'Inter',sans-serif;color:#f5f4ff">Guest run — progress expires in 24 h</div><div style="font:400 11px/1.3 'Inter',sans-serif;color:#b5afe8">Save it to keep 13,690 CUBES and your rank</div></div>
+      </div>
+    </sc-if>
+    <a href="#2b" style="display:flex;align-items:center;justify-content:center;gap:9px;height:62px;border-radius:16px;background:rgba(181,171,252,.08);box-shadow:inset 0 0 0 1.5px #b5abfc,0 0 30px rgba(145,132,217,.35);font:600 19px/1 'Inter',sans-serif;letter-spacing:.14em;color:#e7e5fe;text-decoration:none"><i class="ph-fill ph-play" style="font-size:16px"></i>RUN AGAIN</a>
+    <div style="display:flex;gap:11px">
+      <a href="#2g" style="flex:1;display:flex;align-items:center;justify-content:center;height:48px;border-radius:13px;box-shadow:inset 0 0 0 1px #595d6c;font:500 14px/1 'Inter',sans-serif;color:#cfd3e5;text-decoration:none">Save progress</a>
+      <a href="#2d" style="width:48px;height:48px;border-radius:13px;box-shadow:inset 0 0 0 1px #595d6c;display:flex;align-items:center;justify-content:center;font-size:18px;color:#9397ab;text-decoration:none"><i class="ph ph-share-network"></i></a>
+    </div>
+  </div>
+</div>
+</div></div>
+
+<!-- ══ 2d LEADERBOARD ══ -->
+<div class="dv-opt" id="2d"><div class="dv-olabel"><a class="dv-oid" href="#2d">2d</a>World leaderboard</div>
+<div class="dv-card" style="width:390px">
+<div data-screen-label="04 Leaderboard" style="width:390px;height:844px;background:var(--color-bg);position:relative;overflow:hidden;display:flex;flex-direction:column">
+
+  <div style="padding:22px 20px 0">
+    <h3 style="margin:0 0 3px;font:500 25px/1 'Inter',sans-serif;letter-spacing:-.02em;color:#e9e9ed">World top</h3>
+    <div style="font:400 12px/1 'Inter',sans-serif;color:#75798c;font-variant-numeric:tabular-nums">1,204,882 players · season 2</div>
+  </div>
+
+  <div style="display:flex;gap:6px;padding:16px 20px 0">
+    <span style="padding:7px 14px;border-radius:999px;background:rgba(181,171,252,.14);box-shadow:inset 0 0 0 1px #9184d9;font:500 12px/1 'Inter',sans-serif;color:#d2cefd">Global</span>
+    <span style="padding:7px 14px;border-radius:999px;font:500 12px/1 'Inter',sans-serif;color:#75798c">Friends</span>
+    <span style="padding:7px 14px;border-radius:999px;font:500 12px/1 'Inter',sans-serif;color:#75798c">Today</span>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;align-items:end;gap:10px;padding:26px 20px 0">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:7px">
+      <div style="width:34px;height:34px;border-radius:11px;background:#292b31;box-shadow:inset 0 0 0 1px #3f424d;display:flex;align-items:center;justify-content:center;font:600 13px/1 'Inter',sans-serif;color:#b2b6ca">nr</div>
+      <div style="font:500 11px/1.2 'Inter',sans-serif;color:#cfd3e5;text-align:center">not_a_<br>rugpull</div>
+      <div style="font:600 13px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#9397ab">171,338</div>
+      <div style="width:100%;height:52px;border-radius:8px 8px 0 0;background:linear-gradient(180deg,#292b31,#1b1c23);box-shadow:inset 0 0 0 1px #3f424d;display:flex;align-items:center;justify-content:center;font:600 15px/1 'Inter',sans-serif;color:#9397ab">2</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:7px">
+      <i class="ph-fill ph-crown-simple" style="font-size:18px;color:#b5abfc"></i>
+      <div style="width:46px;height:46px;border-radius:14px;background:linear-gradient(140deg,#423a6a,#262a60);box-shadow:0 0 0 1px #5d5294,0 0 20px rgba(145,132,217,.4);display:flex;align-items:center;justify-content:center;font:600 16px/1 'Inter',sans-serif;color:#e7e5fe">wc</div>
+      <div style="font:500 12px/1.2 'Inter',sans-serif;color:#f5f4ff;text-align:center">wallstreet<br>cube</div>
+      <div style="font:700 16px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#d2cefd">184,902</div>
+      <div style="width:100%;height:82px;border-radius:8px 8px 0 0;background:linear-gradient(180deg,#3a3f86,#262a60);box-shadow:inset 0 0 0 1px #4c5397;display:flex;align-items:center;justify-content:center;font:700 22px/1 'Inter',sans-serif;color:#e7e5fe">1</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:7px">
+      <div style="width:32px;height:32px;border-radius:11px;background:#292b31;box-shadow:inset 0 0 0 1px #3f424d;display:flex;align-items:center;justify-content:center;font:600 12px/1 'Inter',sans-serif;color:#b2b6ca">tm</div>
+      <div style="font:500 11px/1.2 'Inter',sans-serif;color:#cfd3e5;text-align:center">tonmaxi<br>.ton</div>
+      <div style="font:600 13px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#9397ab">160,514</div>
+      <div style="width:100%;height:40px;border-radius:8px 8px 0 0;background:linear-gradient(180deg,#292b31,#1b1c23);box-shadow:inset 0 0 0 1px #3f424d;display:flex;align-items:center;justify-content:center;font:600 15px/1 'Inter',sans-serif;color:#9397ab">3</div>
+    </div>
+  </div>
+
+  <div style="flex:1;overflow:hidden;padding:4px 20px 0;display:flex;flex-direction:column">
+    <div style="height:1px;background:linear-gradient(to right,transparent,rgba(233,233,237,.16) 48px,rgba(233,233,237,.16) calc(100% - 48px),transparent);margin-bottom:6px"></div>
+    <div style="display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:12px;padding:11px 4px"><span style="font:600 12px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#75798c">04</span><span style="font:500 14px/1 'Inter',sans-serif;color:#cfd3e5">oops_daddy</span><span style="font:600 13px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#b2b6ca">148,220</span></div>
+    <div style="display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:12px;padding:11px 4px"><span style="font:600 12px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#75798c">05</span><span style="font:500 14px/1 'Inter',sans-serif;color:#cfd3e5">jump_or_die</span><span style="font:600 13px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#b2b6ca">141,905</span></div>
+    <div style="display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:12px;padding:11px 4px"><span style="font:600 12px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#75798c">06</span><span style="font:500 14px/1 'Inter',sans-serif;color:#cfd3e5">cubersinha</span><span style="font:600 13px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#b2b6ca">139,412</span></div>
+    <div style="display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:12px;padding:11px 4px"><span style="font:600 12px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#75798c">07</span><span style="font:500 14px/1 'Inter',sans-serif;color:#cfd3e5">mrs_facemelt</span><span style="font:600 13px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#b2b6ca">133,077</span></div>
+    <div style="display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:12px;padding:11px 4px"><span style="font:600 12px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#75798c">08</span><span style="font:500 14px/1 'Inter',sans-serif;color:#cfd3e5">degen_geometry</span><span style="font:600 13px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#b2b6ca">128,640</span></div>
+    <div style="display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:12px;padding:11px 4px;opacity:.55"><span style="font:600 12px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#75798c">09</span><span style="font:500 14px/1 'Inter',sans-serif;color:#cfd3e5">wall_hugger</span><span style="font:600 13px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#b2b6ca">124,118</span></div>
+  </div>
+
+  <div style="padding:0 20px 18px">
+    <div style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:14px 15px;border-radius:14px;background:linear-gradient(100deg,#2c3170,#232532);box-shadow:0 0 0 1px #b5abfc,0 -12px 30px rgba(0,0,0,.55)">
+      <span style="font:700 15px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#d2cefd">#1204</span>
+      <div><div style="font:500 14px/1.2 'Inter',sans-serif;color:#f5f4ff">You · Guest #4821</div><div style="display:flex;align-items:center;gap:4px;font:400 11px/1.2 'Inter',sans-serif;color:#b5afe8"><i class="ph ph-arrow-up" style="font-size:11px"></i>82 places today</div></div>
+      <span style="font:600 14px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#e7e5fe">6,104</span>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(6,1fr);align-items:center;padding:10px 0 14px;background:linear-gradient(to right,transparent,rgba(233,233,237,.16) 48px,rgba(233,233,237,.16) calc(100% - 48px),transparent) top/100% 1px no-repeat">
+    <a href="#2a" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-house"></i></a>
+    <a href="#2d" style="display:flex;justify-content:center;font-size:21px;color:#b5abfc;text-decoration:none"><i class="ph-fill ph-trophy"></i></a>
+    <a href="#2e" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-target"></i></a>
+    <a href="#2f" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-plus-circle"></i></a>
+    <a href="#2i" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-currency-circle-dollar"></i></a>
+    <a href="#2g" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-user"></i></a>
+  </div>
+</div>
+</div></div>
+
+<!-- ══ 2e QUESTS ══ -->
+<div class="dv-opt" id="2e"><div class="dv-olabel"><a class="dv-oid" href="#2e">2e</a>Quests — where CUBES actually come from (free)</div>
+<div class="dv-card" style="width:390px">
+<div data-screen-label="05 Quests" style="width:390px;height:844px;background:var(--color-bg);position:relative;overflow:hidden;display:flex;flex-direction:column">
+
+  <div style="padding:22px 20px 0">
+    <h3 style="margin:0 0 3px;font:500 25px/1 'Inter',sans-serif;letter-spacing:-.02em;color:#e9e9ed">Quests</h3>
+    <div style="font:400 12px/1 'Inter',sans-serif;color:#75798c">Earn CUBES free · resets in 6 h 12 m</div>
+  </div>
+
+  <div style="margin:18px 20px 0;padding:16px 16px 14px;border-radius:16px;background:linear-gradient(120deg,#262a60,#1d2040);box-shadow:0 0 0 1px #4c5397">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+      <div style="display:flex;align-items:center;gap:8px">
+        <i class="ph-fill ph-fire" style="font-size:20px;color:#b5abfc"></i>
+        <span style="font:700 24px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#f5f4ff">5</span>
+        <span style="font:500 11px/1 'Inter',sans-serif;letter-spacing:.14em;color:#b5afe8">DAY STREAK</span>
+      </div>
+      <span style="font:500 11px/1 'Inter',sans-serif;color:#a7a1db">+2× rewards</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><svg width="22" height="26" viewBox="0 0 100 116"><polygon points="50,0 100,29 50,58 0,29" fill="#d2cefd"></polygon><polygon points="0,29 50,58 50,116 0,87" fill="#5d5294"></polygon><polygon points="100,29 50,58 50,116 100,87" fill="#9184d9"></polygon></svg><span style="font:500 9px/1 'Inter',sans-serif;color:#a7a1db">M</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><svg width="22" height="26" viewBox="0 0 100 116"><polygon points="50,0 100,29 50,58 0,29" fill="#d2cefd"></polygon><polygon points="0,29 50,58 50,116 0,87" fill="#5d5294"></polygon><polygon points="100,29 50,58 50,116 100,87" fill="#9184d9"></polygon></svg><span style="font:500 9px/1 'Inter',sans-serif;color:#a7a1db">T</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><svg width="22" height="26" viewBox="0 0 100 116"><polygon points="50,0 100,29 50,58 0,29" fill="#d2cefd"></polygon><polygon points="0,29 50,58 50,116 0,87" fill="#5d5294"></polygon><polygon points="100,29 50,58 50,116 100,87" fill="#9184d9"></polygon></svg><span style="font:500 9px/1 'Inter',sans-serif;color:#a7a1db">W</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><svg width="22" height="26" viewBox="0 0 100 116"><polygon points="50,0 100,29 50,58 0,29" fill="#d2cefd"></polygon><polygon points="0,29 50,58 50,116 0,87" fill="#5d5294"></polygon><polygon points="100,29 50,58 50,116 100,87" fill="#9184d9"></polygon></svg><span style="font:500 9px/1 'Inter',sans-serif;color:#a7a1db">T</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:5px;position:relative"><div style="position:absolute;top:-6px;width:34px;height:38px;border-radius:50%;background:radial-gradient(circle,rgba(245,244,255,.3),transparent 70%);animation:oopsPulse 2.4s ease-in-out infinite"></div><svg width="22" height="26" viewBox="0 0 100 116" style="position:relative"><polygon points="50,0 100,29 50,58 0,29" fill="#f5f4ff"></polygon><polygon points="0,29 50,58 50,116 0,87" fill="#b5abfc"></polygon><polygon points="100,29 50,58 50,116 100,87" fill="#e7e5fe"></polygon></svg><span style="font:600 9px/1 'Inter',sans-serif;color:#f5f4ff">F</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><span style="width:22px;height:22px;border-radius:7px;box-shadow:inset 0 0 0 1.5px rgba(181,171,252,.35)"></span><span style="font:500 9px/1 'Inter',sans-serif;color:#75798c">S</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><span style="width:22px;height:22px;border-radius:7px;box-shadow:inset 0 0 0 1.5px rgba(181,171,252,.35)"></span><span style="font:500 9px/1 'Inter',sans-serif;color:#75798c">S</span></div>
+    </div>
+  </div>
+
+  <div style="padding:22px 20px 0;font:500 10px/1 'Inter',sans-serif;letter-spacing:.16em;color:#75798c">TODAY</div>
+
+  <div style="padding:12px 20px 0;display:flex;flex-direction:column;gap:9px">
+    <div style="padding:14px 15px;border-radius:14px;background:var(--color-surface);box-shadow:0 0 0 1px #3f424d">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:11px">
+        <span style="font:500 14px/1.2 'Inter',sans-serif;color:#e9e9ed">Survive 1,000 m in one run</span>
+        <span style="display:flex;align-items:center;gap:5px;font:600 13px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#d2cefd"><svg width="11" height="13" viewBox="0 0 100 116"><polygon points="50,0 100,29 50,58 0,29" fill="#b5abfc"></polygon><polygon points="0,29 50,58 50,116 0,87" fill="#5d5294"></polygon><polygon points="100,29 50,58 50,116 100,87" fill="#9184d9"></polygon></svg>500</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="flex:1;display:grid;grid-template-columns:repeat(12,1fr);gap:3px">
+          <span style="height:7px;border-radius:1px;background:#b5abfc"></span><span style="height:7px;border-radius:1px;background:#b5abfc"></span><span style="height:7px;border-radius:1px;background:#b5abfc"></span><span style="height:7px;border-radius:1px;background:#b5abfc"></span><span style="height:7px;border-radius:1px;background:#b5abfc"></span><span style="height:7px;border-radius:1px;background:#b5abfc"></span><span style="height:7px;border-radius:1px;background:#b5abfc"></span><span style="height:7px;border-radius:1px;background:#b5abfc"></span><span style="height:7px;border-radius:1px;background:#3f424d"></span><span style="height:7px;border-radius:1px;background:#3f424d"></span><span style="height:7px;border-radius:1px;background:#3f424d"></span><span style="height:7px;border-radius:1px;background:#3f424d"></span>
+        </div>
+        <span style="font:600 11px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#9397ab">2 / 3</span>
+      </div>
+    </div>
+
+    <div style="padding:14px 15px;border-radius:14px;background:var(--color-surface);box-shadow:0 0 0 1px #3f424d">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:11px">
+        <span style="font:500 14px/1.2 'Inter',sans-serif;color:#e9e9ed">Collect 3,000 CUBES</span>
+        <span style="display:flex;align-items:center;gap:5px;font:600 13px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#d2cefd"><svg width="11" height="13" viewBox="0 0 100 116"><polygon points="50,0 100,29 50,58 0,29" fill="#b5abfc"></polygon><polygon points="0,29 50,58 50,116 0,87" fill="#5d5294"></polygon><polygon points="100,29 50,58 50,116 100,87" fill="#9184d9"></polygon></svg>750</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="flex:1;display:grid;grid-template-columns:repeat(12,1fr);gap:3px">
+          <span style="height:7px;border-radius:1px;background:#b5abfc"></span><span style="height:7px;border-radius:1px;background:#b5abfc"></span><span style="height:7px;border-radius:1px;background:#b5abfc"></span><span style="height:7px;border-radius:1px;background:#b5abfc"></span><span style="height:7px;border-radius:1px;background:#3f424d"></span><span style="height:7px;border-radius:1px;background:#3f424d"></span><span style="height:7px;border-radius:1px;background:#3f424d"></span><span style="height:7px;border-radius:1px;background:#3f424d"></span><span style="height:7px;border-radius:1px;background:#3f424d"></span><span style="height:7px;border-radius:1px;background:#3f424d"></span><span style="height:7px;border-radius:1px;background:#3f424d"></span><span style="height:7px;border-radius:1px;background:#3f424d"></span>
+        </div>
+        <span style="font:600 11px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#9397ab">1,040 / 3k</span>
+      </div>
+    </div>
+
+    <div style="padding:14px 15px;border-radius:14px;background:rgba(35,37,50,.55);box-shadow:0 0 0 1px #3f424d;display:flex;align-items:center;gap:11px">
+      <i class="ph-fill ph-check-circle" style="font-size:21px;color:#b5abfc"></i>
+      <span style="flex:1;font:500 14px/1.2 'Inter',sans-serif;color:#9397ab;text-decoration:line-through">Play 1 run today</span>
+      <span style="font:500 11px/1 'Inter',sans-serif;color:#9184d9">Claimed</span>
+    </div>
+  </div>
+
+  <div style="padding:24px 20px 0;font:500 10px/1 'Inter',sans-serif;letter-spacing:.16em;color:#75798c">SEASON · PAYS IN OP$</div>
+  <div style="padding:12px 20px 0;display:flex;flex-direction:column;gap:9px">
+    <div style="padding:14px 15px;border-radius:14px;box-shadow:0 0 0 1px #423a6a;display:flex;align-items:center;gap:12px">
+      <img src="assets/oops-coin.png" alt="!OOPS!" style="width:26px;height:26px;display:block;flex:none">
+      <div style="flex:1"><div style="font:500 14px/1.2 'Inter',sans-serif;color:#e9e9ed">Break into world top 1,000</div><div style="font:400 11px/1.3 'Inter',sans-serif;color:#75798c;font-variant-numeric:tabular-nums">204 places to go · paid to your TON wallet</div></div>
+      <span style="font:600 13px/1 'Inter',sans-serif;color:#d2cefd">250 OP$</span>
+    </div>
+  </div>
+
+  <div style="flex:1"></div>
+  <div style="display:grid;grid-template-columns:repeat(6,1fr);align-items:center;padding:10px 0 14px;background:linear-gradient(to right,transparent,rgba(233,233,237,.16) 48px,rgba(233,233,237,.16) calc(100% - 48px),transparent) top/100% 1px no-repeat">
+    <a href="#2a" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-house"></i></a>
+    <a href="#2d" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-trophy"></i></a>
+    <a href="#2e" style="display:flex;justify-content:center;font-size:21px;color:#b5abfc;text-decoration:none"><i class="ph-fill ph-target"></i></a>
+    <a href="#2f" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-plus-circle"></i></a>
+    <a href="#2i" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-currency-circle-dollar"></i></a>
+    <a href="#2g" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-user"></i></a>
+  </div>
+</div>
+</div></div>
+
+<!-- ══ 2f TOP-UP ══ -->
+<div class="dv-opt" id="2f"><div class="dv-olabel"><a class="dv-oid" href="#2f">2f</a>Top up CUBES — optional, SBP ₽ / card $</div>
+<div class="dv-card" style="width:390px">
+<div data-screen-label="06 Top up" style="width:390px;height:844px;background:var(--color-bg);position:relative;overflow:hidden;display:flex;flex-direction:column">
+
+  <div style="padding:22px 20px 0">
+    <h3 style="margin:0 0 4px;font:500 25px/1 'Inter',sans-serif;letter-spacing:-.02em;color:#e9e9ed">Top up CUBES</h3>
+    <div style="font:400 12px/1.4 'Inter',sans-serif;color:#75798c;max-width:300px">CUBES are free from quests and streaks. Buying just skips the grind.</div>
+    <div style="display:flex;align-items:center;gap:7px;margin-top:10px;font:400 12px/1 'Inter',sans-serif;color:#75798c">Balance
+      <span style="display:flex;align-items:center;gap:5px;font:600 13px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#e9e9ed"><svg width="11" height="13" viewBox="0 0 100 116"><polygon points="50,0 100,29 50,58 0,29" fill="#b5abfc"></polygon><polygon points="0,29 50,58 50,116 0,87" fill="#5d5294"></polygon><polygon points="100,29 50,58 50,116 100,87" fill="#9184d9"></polygon></svg>13,690</span>
+    </div>
+  </div>
+
+  <div style="display:flex;padding:18px 20px 0">
+    <div style="flex:1;padding:10px 0;text-align:center;font:500 13px/1 'Inter',sans-serif;color:#d2cefd;box-shadow:inset 0 -2px 0 #b5abfc">SBP · ₽</div>
+    <div style="flex:1;padding:10px 0;text-align:center;font:500 13px/1 'Inter',sans-serif;color:#75798c;box-shadow:inset 0 -1px 0 #3f424d">Card · $</div>
+  </div>
+
+  <div style="padding:20px 20px 0;display:flex;flex-direction:column;gap:10px">
+    <div style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;padding:15px;border-radius:14px;background:var(--color-surface);box-shadow:0 0 0 1px #3f424d">
+      <svg width="26" height="30" viewBox="0 0 100 116"><polygon points="50,0 100,29 50,58 0,29" fill="#b2b6ca"></polygon><polygon points="0,29 50,58 50,116 0,87" fill="#3f424d"></polygon><polygon points="100,29 50,58 50,116 100,87" fill="#75798c"></polygon></svg>
+      <div><div style="font:600 19px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#e9e9ed">5,000</div><div style="font:400 11px/1.3 'Inter',sans-serif;color:#75798c">Starter chip</div></div>
+      <div style="padding:9px 14px;border-radius:10px;box-shadow:inset 0 0 0 1px #595d6c;font:500 13px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#cfd3e5">199 ₽</div>
+    </div>
+
+    <div style="position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;padding:17px 15px;border-radius:14px;background:linear-gradient(100deg,#2c3170,#232532);box-shadow:0 0 0 1px #b5abfc,0 0 34px rgba(145,132,217,.3)">
+      <span style="position:absolute;top:-8px;left:15px;padding:3px 8px;border-radius:6px;background:#b5abfc;font:600 9px/1.4 'Inter',sans-serif;letter-spacing:.1em;color:#161826">BEST VALUE</span>
+      <svg width="34" height="39" viewBox="0 0 100 116" style="filter:drop-shadow(0 0 16px rgba(181,171,252,.5))"><polygon points="50,0 100,29 50,58 0,29" fill="#f5f4ff"></polygon><polygon points="0,29 50,58 50,116 0,87" fill="#5d5294"></polygon><polygon points="100,29 50,58 50,116 100,87" fill="#b5abfc"></polygon></svg>
+      <div><div style="display:flex;align-items:baseline;gap:8px"><span style="font:700 26px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#f5f4ff">30,000</span><span style="font:600 10px/1 'Inter',sans-serif;letter-spacing:.06em;color:#b5abfc">+20%</span></div><div style="font:400 11px/1.3 'Inter',sans-serif;color:#b5afe8">Whale cube · 36,000 total</div></div>
+      <div style="padding:11px 15px;border-radius:11px;background:rgba(181,171,252,.12);box-shadow:inset 0 0 0 1.5px #b5abfc;font:600 14px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#e7e5fe">899 ₽</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;padding:15px;border-radius:14px;background:var(--color-surface);box-shadow:0 0 0 1px #3f424d">
+      <svg width="30" height="35" viewBox="0 0 100 116"><polygon points="50,0 100,29 50,58 0,29" fill="#b2b6ca"></polygon><polygon points="0,29 50,58 50,116 0,87" fill="#3f424d"></polygon><polygon points="100,29 50,58 50,116 100,87" fill="#75798c"></polygon></svg>
+      <div><div style="display:flex;align-items:baseline;gap:8px"><span style="font:600 21px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#e9e9ed">14,000</span><span style="font:600 10px/1 'Inter',sans-serif;color:#9184d9">+10%</span></div><div style="font:400 11px/1.3 'Inter',sans-serif;color:#75798c">Big stack</div></div>
+      <div style="padding:9px 14px;border-radius:10px;box-shadow:inset 0 0 0 1px #595d6c;font:500 13px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#cfd3e5">449 ₽</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;padding:15px;border-radius:14px;background:var(--color-surface);box-shadow:0 0 0 1px #3f424d">
+      <svg width="40" height="46" viewBox="0 0 100 116"><polygon points="50,0 100,29 50,58 0,29" fill="#b2b6ca"></polygon><polygon points="0,29 50,58 50,116 0,87" fill="#3f424d"></polygon><polygon points="100,29 50,58 50,116 100,87" fill="#75798c"></polygon></svg>
+      <div><div style="display:flex;align-items:baseline;gap:8px"><span style="font:600 21px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#e9e9ed">100,000</span><span style="font:600 10px/1 'Inter',sans-serif;color:#9184d9">+35%</span></div><div style="font:400 11px/1.3 'Inter',sans-serif;color:#75798c">Absolute unit</div></div>
+      <div style="padding:9px 14px;border-radius:10px;box-shadow:inset 0 0 0 1px #595d6c;font:500 13px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#cfd3e5">2 590 ₽</div>
+    </div>
+  </div>
+
+  <a href="#2i" style="margin:20px 20px 0;padding:14px 15px;border-radius:14px;box-shadow:0 0 0 1px #423a6a;display:flex;align-items:center;gap:11px;text-decoration:none">
+    <img src="assets/oops-coin.png" alt="!OOPS!" style="width:28px;height:28px;display:block;flex:none">
+    <div style="flex:1"><div style="font:500 13px/1.25 'Inter',sans-serif;color:#e9e9ed">Looking for the coin?</div><div style="font:400 11px/1.35 'Inter',sans-serif;color:#75798c">!OOPS! (OP$) is a real TON token — separate from CUBES</div></div>
+    <span style="font:500 11px/1 'Inter',sans-serif;color:#b5abfc">Open</span>
+  </a>
+
+  <div style="padding:14px 20px 0;font:400 10px/1.4 'Inter',sans-serif;color:#595d6c">Design mockup — no real payment flow. CUBES is an in-game currency with no cash value.</div>
+
+  <div style="flex:1"></div>
+  <div style="display:grid;grid-template-columns:repeat(6,1fr);align-items:center;padding:10px 0 14px;background:linear-gradient(to right,transparent,rgba(233,233,237,.16) 48px,rgba(233,233,237,.16) calc(100% - 48px),transparent) top/100% 1px no-repeat">
+    <a href="#2a" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-house"></i></a>
+    <a href="#2d" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-trophy"></i></a>
+    <a href="#2e" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-target"></i></a>
+    <a href="#2f" style="display:flex;justify-content:center;font-size:21px;color:#b5abfc;text-decoration:none"><i class="ph-fill ph-plus-circle"></i></a>
+    <a href="#2i" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-currency-circle-dollar"></i></a>
+    <a href="#2g" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-user"></i></a>
+  </div>
+</div>
+</div></div>
+
+<!-- ══ 2i MEME COIN ══ -->
+<div class="dv-opt" id="2i"><div class="dv-olabel"><a class="dv-oid" href="#2i">2i</a>!OOPS! (OP$) — the real TON token: contract, pool, how to earn</div>
+<div class="dv-card" style="width:390px">
+<div data-screen-label="07 Coin" style="width:390px;height:844px;background:var(--color-bg);position:relative;overflow:hidden;display:flex;flex-direction:column">
+  <div style="position:absolute;top:-130px;right:-80px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(76,83,151,.45),transparent 68%)"></div>
+
+  <div style="position:relative;padding:24px 20px 0;display:flex;align-items:center;gap:14px">
+    <img src="assets/oops-coin.png" alt="!OOPS!" style="width:60px;height:60px;display:block;flex:none;filter:drop-shadow(0 0 20px rgba(145,132,217,.5))">
+    <div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+        <span style="font:700 24px/1 'Inter',sans-serif;letter-spacing:-.03em;color:#e9e9ed">!OOPS!</span>
+        <span style="padding:3px 8px;border-radius:6px;background:rgba(181,171,252,.14);box-shadow:inset 0 0 0 1px #5d5294;font:600 10px/1.4 'Inter',sans-serif;letter-spacing:.08em;color:#b5abfc">OP$</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;font:400 11px/1 'Inter',sans-serif;color:#75798c"><i class="ph ph-diamond" style="font-size:12px;color:#9184d9"></i>Jetton on TON</div>
+    </div>
+  </div>
+
+  <div style="position:relative;display:grid;grid-template-columns:1fr 1fr;gap:1px;margin:22px 20px 0;background:rgba(233,233,237,.12)">
+    <div style="background:#191b28;padding:15px 14px"><div style="font:500 9px/1 'Inter',sans-serif;letter-spacing:.14em;color:#75798c;margin-bottom:7px">YOUR OP$</div><div style="font:600 22px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#e9e9ed">0</div></div>
+    <div style="background:#191b28;padding:15px 14px"><div style="font:500 9px/1 'Inter',sans-serif;letter-spacing:.14em;color:#75798c;margin-bottom:7px">CLAIMABLE</div><div style="font:600 22px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#b5abfc">250</div></div>
+  </div>
+
+  <div style="position:relative;margin:18px 20px 0;padding:15px;border-radius:14px;background:var(--color-surface);box-shadow:0 0 0 1px #3f424d">
+    <div style="font:500 9px/1 'Inter',sans-serif;letter-spacing:.16em;color:#75798c;margin-bottom:9px">CONTRACT ADDRESS</div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <span style="flex:1;min-width:0;font:500 12px/1.45 ui-monospace,Menlo,monospace;color:#cfd3e5;word-break:break-all">EQDkJ7JFweQazs_OFkvgLeGfv7B0Acn87bHbeytk5TbE179T</span>
+      <span style="width:38px;height:38px;flex:none;border-radius:11px;box-shadow:inset 0 0 0 1px #595d6c;display:flex;align-items:center;justify-content:center;font-size:17px;color:#b5abfc"><i class="ph ph-copy"></i></span>
+    </div>
+  </div>
+
+  <div style="position:relative;margin:10px 20px 0;display:flex;flex-direction:column;gap:9px">
+    <a href="https://app.ston.fi/pools/EQCMSSykiVXXv7j9uUZPcTV6K8Wj-5YqTH8XnIOgXMsQdMcE" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;padding:15px;border-radius:14px;background:rgba(181,171,252,.07);box-shadow:inset 0 0 0 1.5px #b5abfc;text-decoration:none">
+      <i class="ph ph-drop-half-bottom" style="font-size:20px;color:#b5abfc"></i>
+      <div style="flex:1"><div style="font:500 14px/1.2 'Inter',sans-serif;color:#e7e5fe">Liquidity pool on STON.fi</div><div style="font:400 11px/1.3 'Inter',sans-serif;color:#b5afe8">Trade OP$ / TON · add liquidity</div></div>
+      <i class="ph ph-arrow-up-right" style="font-size:16px;color:#b5abfc"></i>
+    </a>
+    <div style="display:flex;align-items:center;gap:12px;padding:15px;border-radius:14px;box-shadow:inset 0 0 0 1px #595d6c">
+      <i class="ph ph-wallet" style="font-size:20px;color:#9184d9"></i>
+      <div style="flex:1"><div style="font:500 14px/1.2 'Inter',sans-serif;color:#e9e9ed">Connect TON wallet</div><div style="font:400 11px/1.3 'Inter',sans-serif;color:#75798c">Tonkeeper, MyTonWallet, Wallet in Telegram</div></div>
+      <i class="ph ph-caret-right" style="font-size:15px;color:#75798c"></i>
+    </div>
+  </div>
+
+  <div style="position:relative;padding:26px 20px 0;font:500 10px/1 'Inter',sans-serif;letter-spacing:.16em;color:#75798c">HOW TO GET OP$ FREE</div>
+  <div style="position:relative;padding:12px 20px 0;display:flex;flex-direction:column;gap:9px">
+    <div style="display:flex;align-items:center;gap:12px;padding:13px 15px;border-radius:13px;background:rgba(35,37,50,.6)"><span style="width:24px;height:24px;flex:none;border-radius:8px;background:rgba(181,171,252,.15);display:flex;align-items:center;justify-content:center;font:600 11px/1 'Inter',sans-serif;color:#b5abfc">1</span><span style="flex:1;font:400 13px/1.35 'Inter',sans-serif;color:#cfd3e5">Connect any TON wallet to your account</span></div>
+    <div style="display:flex;align-items:center;gap:12px;padding:13px 15px;border-radius:13px;background:rgba(35,37,50,.6)"><span style="width:24px;height:24px;flex:none;border-radius:8px;background:rgba(181,171,252,.15);display:flex;align-items:center;justify-content:center;font:600 11px/1 'Inter',sans-serif;color:#b5abfc">2</span><span style="flex:1;font:400 13px/1.35 'Inter',sans-serif;color:#cfd3e5">Finish season quests — they pay in OP$, not CUBES</span></div>
+    <div style="display:flex;align-items:center;gap:12px;padding:13px 15px;border-radius:13px;background:rgba(35,37,50,.6)"><span style="width:24px;height:24px;flex:none;border-radius:8px;background:rgba(181,171,252,.15);display:flex;align-items:center;justify-content:center;font:600 11px/1 'Inter',sans-serif;color:#b5abfc">3</span><span style="flex:1;font:400 13px/1.35 'Inter',sans-serif;color:#cfd3e5">Weekly airdrop to the top 1,000 of the board</span></div>
+  </div>
+
+  <div style="position:relative;padding:16px 20px 0;font:400 10px/1.45 'Inter',sans-serif;color:#595d6c">OP$ is a community meme coin on TON, not an investment product and not exchangeable for CUBES.</div>
+
+  <div style="flex:1"></div>
+  <div style="display:grid;grid-template-columns:repeat(6,1fr);align-items:center;padding:10px 0 14px;background:linear-gradient(to right,transparent,rgba(233,233,237,.16) 48px,rgba(233,233,237,.16) calc(100% - 48px),transparent) top/100% 1px no-repeat">
+    <a href="#2a" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-house"></i></a>
+    <a href="#2d" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-trophy"></i></a>
+    <a href="#2e" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-target"></i></a>
+    <a href="#2f" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-plus-circle"></i></a>
+    <a href="#2i" style="display:flex;justify-content:center;font-size:21px;color:#b5abfc;text-decoration:none"><i class="ph-fill ph-currency-circle-dollar"></i></a>
+    <a href="#2g" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-user"></i></a>
+  </div>
+</div>
+</div></div>
+
+<!-- ══ 2g PROFILE ══ -->
+<div class="dv-opt" id="2g"><div class="dv-olabel"><a class="dv-oid" href="#2g">2g</a>Profile — stats, guest state, wallet slot</div>
+<div class="dv-card" style="width:390px">
+<div data-screen-label="08 Profile" style="width:390px;height:844px;background:var(--color-bg);position:relative;overflow:hidden;display:flex;flex-direction:column">
+  <div style="position:absolute;top:-140px;right:-100px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(66,58,106,.6),transparent 70%)"></div>
+
+  <div style="position:relative;padding:26px 20px 0;display:flex;align-items:center;gap:14px">
+    <div style="width:64px;height:64px;border-radius:18px;background:linear-gradient(140deg,#423a6a,#262a60);box-shadow:0 0 0 1px #595d6c;display:flex;align-items:center;justify-content:center">
+      <svg width="30" height="35" viewBox="0 0 100 116"><polygon points="50,0 100,29 50,58 0,29" fill="#d2cefd"></polygon><polygon points="0,29 50,58 50,116 0,87" fill="#2b2741"></polygon><polygon points="100,29 50,58 50,116 100,87" fill="#9184d9"></polygon></svg>
+    </div>
+    <div>
+      <div style="font:500 22px/1.1 'Inter',sans-serif;color:#e9e9ed;margin-bottom:6px">Guest #4821</div>
+      <sc-if value="{{ guest }}" hint-placeholder-val="{{ true }}">
+        <div style="display:inline-flex;align-items:center;gap:5px;padding:4px 9px;border-radius:7px;background:rgba(63,66,77,.6);box-shadow:inset 0 0 0 1px #595d6c;font:500 10px/1 'Inter',sans-serif;letter-spacing:.08em;color:#b2b6ca"><i class="ph ph-ghost" style="font-size:12px"></i>GUEST</div>
+      </sc-if>
+    </div>
+  </div>
+
+  <div style="position:relative;margin:20px 20px 0;padding:13px 15px;border-radius:13px;background:rgba(38,42,96,.5);box-shadow:0 0 0 1px #4c5397;display:flex;align-items:center;gap:11px">
+    <i class="ph ph-seal-check" style="font-size:19px;color:#b5abfc"></i>
+    <div style="flex:1;font:400 12px/1.35 'Inter',sans-serif;color:#b5afe8">Claim your account to keep the streak, rank and balance forever.</div>
+    <span style="padding:8px 12px;border-radius:10px;background:rgba(181,171,252,.12);box-shadow:inset 0 0 0 1px #b5abfc;font:500 12px/1 'Inter',sans-serif;color:#e7e5fe">Claim</span>
+  </div>
+
+  <div style="position:relative;display:grid;grid-template-columns:1fr 1fr;gap:1px;margin:24px 20px 0;background:rgba(233,233,237,.12)">
+    <div style="background:#191b28;padding:16px 14px"><div style="font:500 9px/1 'Inter',sans-serif;letter-spacing:.14em;color:#75798c;margin-bottom:7px">BEST SCORE</div><div style="font:600 24px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#e9e9ed">6,104</div></div>
+    <div style="background:#191b28;padding:16px 14px"><div style="font:500 9px/1 'Inter',sans-serif;letter-spacing:.14em;color:#75798c;margin-bottom:7px">WORLD RANK</div><div style="font:600 24px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#b5abfc">#1,204</div></div>
+    <div style="background:#191b28;padding:16px 14px"><div style="font:500 9px/1 'Inter',sans-serif;letter-spacing:.14em;color:#75798c;margin-bottom:7px">RUNS</div><div style="font:600 24px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#e9e9ed">312</div></div>
+    <div style="background:#191b28;padding:16px 14px"><div style="font:500 9px/1 'Inter',sans-serif;letter-spacing:.14em;color:#75798c;margin-bottom:7px">DISTANCE</div><div style="font:600 24px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#e9e9ed">184 km</div></div>
+  </div>
+
+  <div style="position:relative;margin:20px 20px 0;padding:15px;border-radius:14px;background:var(--color-surface);box-shadow:0 0 0 1px #3f424d;display:flex;align-items:center;justify-content:space-between">
+    <div style="display:flex;align-items:center;gap:11px"><i class="ph-fill ph-fire" style="font-size:20px;color:#b5abfc"></i><div><div style="font:500 14px/1.2 'Inter',sans-serif;color:#e9e9ed">5 day streak</div><div style="font:400 11px/1.3 'Inter',sans-serif;color:#75798c">Best: 19 days</div></div></div>
+    <a href="#2e" style="font:500 11px/1 'Inter',sans-serif;color:#9184d9;text-decoration:none">Quests →</a>
+  </div>
+
+  <div style="position:relative;margin:20px 20px 0">
+    <div style="font:500 10px/1 'Inter',sans-serif;letter-spacing:.16em;color:#75798c;margin-bottom:12px">WALLET</div>
+    <div style="padding:16px;border-radius:16px;background:#1a1c2b;box-shadow:0 0 0 1px #423a6a">
+      <div style="display:flex;align-items:center;gap:12px">
+        <img src="assets/oops-coin.png" alt="!OOPS!" style="width:34px;height:34px;display:block;flex:none">
+        <div style="flex:1"><div style="font:500 15px/1.2 'Inter',sans-serif;color:#e9e9ed">!OOPS! · OP$</div><div style="font:400 11px/1.3 'Inter',sans-serif;color:#75798c">Real TON token — earned, never bought here</div></div>
+        <a href="#2i" style="font:500 11px/1 'Inter',sans-serif;color:#b5abfc;text-decoration:none">Details</a>
+      </div>
+      <sc-if value="{{ tonConnected }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top:13px;padding:11px 13px;border-radius:11px;background:rgba(38,42,96,.7);box-shadow:0 0 0 1px #4c5397;display:flex;align-items:center;justify-content:space-between"><span style="font:500 12px/1 ui-monospace,Menlo,monospace;color:#e7e5fe">UQBx…7m4c</span><span style="font:600 12px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#b5abfc">250 OP$</span></div>
+      </sc-if>
+      <div style="margin-top:13px;display:flex;align-items:center;justify-content:center;gap:8px;height:44px;border-radius:12px;box-shadow:inset 0 0 0 1px #5d5294;font:500 13px/1 'Inter',sans-serif;color:#b5abfc"><i class="ph ph-wallet" style="font-size:16px"></i>Connect TON wallet</div>
+    </div>
+  </div>
+
+  <div style="flex:1"></div>
+  <div style="display:grid;grid-template-columns:repeat(6,1fr);align-items:center;padding:10px 0 14px;background:linear-gradient(to right,transparent,rgba(233,233,237,.16) 48px,rgba(233,233,237,.16) calc(100% - 48px),transparent) top/100% 1px no-repeat">
+    <a href="#2a" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-house"></i></a>
+    <a href="#2d" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-trophy"></i></a>
+    <a href="#2e" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-target"></i></a>
+    <a href="#2f" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-plus-circle"></i></a>
+    <a href="#2i" style="display:flex;justify-content:center;font-size:21px;color:#75798c;text-decoration:none"><i class="ph ph-currency-circle-dollar"></i></a>
+    <a href="#2g" style="display:flex;justify-content:center;font-size:21px;color:#b5abfc;text-decoration:none"><i class="ph-fill ph-user"></i></a>
+  </div>
+</div>
+</div></div>
+
+<!-- ══ 2h DESKTOP ══ -->
+<div class="dv-opt" id="2h"><div class="dv-olabel"><a class="dv-oid" href="#2h">2h</a>Desktop home — mascot + live ground strip</div>
+<div class="dv-card" style="width:1280px;border-radius:14px">
+<div data-screen-label="09 Desktop home" style="width:1280px;height:800px;background:var(--color-bg);position:relative;overflow:hidden;display:flex;flex-direction:column">
+  <div style="position:absolute;top:-200px;left:120px;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle,rgba(76,83,151,.35),transparent 66%)"></div>
+
+  <div style="position:relative;display:flex;align-items:center;justify-content:space-between;padding:20px 44px;background:linear-gradient(to right,transparent,rgba(233,233,237,.16) 48px,rgba(233,233,237,.16) calc(100% - 48px),transparent) bottom/100% 1px no-repeat">
+    <div style="display:flex;align-items:center;gap:11px">
+      <img class="lighten" src="assets/oops-runner.png" alt="" style="width:30px;height:30px;object-fit:cover;object-position:top;border-radius:9px">
+      <span style="font:700 15px/1 'Inter',sans-serif;letter-spacing:-.02em;color:#e9e9ed">!OOPS! CUBE</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:28px">
+      <a href="#2d" style="font:500 13px/1 'Inter',sans-serif;color:#9397ab;text-decoration:none">Leaderboard</a>
+      <a href="#2e" style="font:500 13px/1 'Inter',sans-serif;color:#9397ab;text-decoration:none">Quests</a>
+      <a href="#2f" style="font:500 13px/1 'Inter',sans-serif;color:#9397ab;text-decoration:none">Top up</a>
+      <a href="#2i" style="font:500 13px/1 'Inter',sans-serif;color:#b5abfc;text-decoration:none">!OOPS! OP$</a>
+      <div style="display:flex;align-items:center;gap:8px;padding:6px 12px 6px 9px;border-radius:999px;background:rgba(35,37,50,.85);box-shadow:0 0 0 1px #3f424d">
+        <svg width="13" height="15" viewBox="0 0 100 116"><polygon points="50,0 100,29 50,58 0,29" fill="#b5abfc"></polygon><polygon points="0,29 50,58 50,116 0,87" fill="#5d5294"></polygon><polygon points="100,29 50,58 50,116 100,87" fill="#9184d9"></polygon></svg>
+        <span style="font:600 13px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#e9e9ed">13,690</span>
+      </div>
+      <div style="width:30px;height:30px;border-radius:9px;background:linear-gradient(140deg,#423a6a,#262a60);box-shadow:0 0 0 1px #595d6c;display:flex;align-items:center;justify-content:center;font:600 11px/1 'Inter',sans-serif;color:#d2cefd">G</div>
+    </div>
+  </div>
+
+  <div style="position:relative;flex:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.78fr) minmax(0,.62fr);gap:34px;padding:44px 44px 0;align-items:center">
+    <div style="display:flex;flex-direction:column">
+      <div style="display:flex;align-items:center;gap:9px;margin-bottom:12px">
+        <span style="width:8px;height:96px;border-radius:3px;background:#b5abfc;box-shadow:0 0 26px rgba(181,171,252,.7)"></span>
+        <h1 style="margin:0;font:700 104px/.86 'Inter',sans-serif;letter-spacing:-.05em;color:#e9e9ed">OOPS</h1>
+        <span style="width:8px;height:96px;border-radius:3px;background:#b5abfc;box-shadow:0 0 26px rgba(181,171,252,.7)"></span>
+      </div>
+      <h2 style="margin:0 0 22px;font:500 46px/1 'Inter',sans-serif;letter-spacing:.3em;color:#9184d9">CUBE</h2>
+      <p style="margin:0 0 30px;max-width:400px;font:400 17px/1.5 'Inter',sans-serif;color:#b2b6ca;text-wrap:pretty">One tap. One jump. The wall does not negotiate. Run, stack CUBES, climb the world board.</p>
+      <div style="display:flex;align-items:center;gap:16px">
+        <a href="#2b" style="display:flex;align-items:center;justify-content:center;gap:11px;height:64px;padding:0 42px;border-radius:16px;background:rgba(181,171,252,.07);box-shadow:inset 0 0 0 1.5px #b5abfc,0 0 40px rgba(145,132,217,.35);font:600 21px/1 'Inter',sans-serif;letter-spacing:.16em;color:#d2cefd;text-decoration:none"><i class="ph-fill ph-play" style="font-size:18px"></i>PLAY</a>
+        <span style="font:400 13px/1.4 'Inter',sans-serif;color:#75798c">No install.<br>Space or tap to jump.</span>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:center">
+      <img class="lighten" src="assets/oops-logo.png" alt="!OOPS! CUBE" style="width:380px;height:380px;object-fit:contain;animation:oopsBob 4.2s ease-in-out infinite">
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:11px">
+      <div style="display:flex;align-items:baseline;justify-content:space-between"><span style="font:500 10px/1 'Inter',sans-serif;letter-spacing:.16em;color:#75798c">WORLD TOP</span><a href="#2d" style="font:500 12px/1 'Inter',sans-serif;color:#9184d9;text-decoration:none">Full board →</a></div>
+      <div style="display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;background:linear-gradient(100deg,#2c3170,#232532);box-shadow:0 0 0 1px #4c5397"><span style="font:700 12px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#b5abfc">01</span><span style="font:500 14px/1 'Inter',sans-serif;color:#f5f4ff">wallstreetcube</span><span style="font:600 13px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#e7e5fe">184,902</span></div>
+      <div style="display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;background:var(--color-surface)"><span style="font:600 12px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#75798c">02</span><span style="font:500 14px/1 'Inter',sans-serif;color:#cfd3e5">not_a_rugpull</span><span style="font:600 13px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#b2b6ca">171,338</span></div>
+      <div style="display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;background:var(--color-surface)"><span style="font:600 12px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#75798c">03</span><span style="font:500 14px/1 'Inter',sans-serif;color:#cfd3e5">tonmaxi.ton</span><span style="font:600 13px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#b2b6ca">160,514</span></div>
+      <div style="display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;box-shadow:inset 0 0 0 1px #423a6a"><span style="font:700 12px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#9184d9">1204</span><span style="font:500 14px/1 'Inter',sans-serif;color:#e9e9ed">You</span><span style="font:600 13px/1 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#cfd3e5">6,104</span></div>
+      <a href="#2i" style="display:flex;align-items:center;gap:10px;margin-top:6px;padding:12px 14px;border-radius:12px;box-shadow:inset 0 0 0 1px #3f424d;text-decoration:none"><img src="assets/oops-coin.png" alt="!OOPS!" style="width:22px;height:22px;display:block;flex:none"><span style="flex:1;font:400 12px/1.3 'Inter',sans-serif;color:#9397ab">!OOPS! (OP$) live on TON · STON.fi pool</span><i class="ph ph-arrow-up-right" style="font-size:13px;color:#9184d9"></i></a>
+    </div>
+  </div>
+
+  <div style="position:relative;height:96px;margin-top:16px;overflow:hidden">
+    <div style="position:absolute;left:0;right:0;bottom:34px;height:2px;background:linear-gradient(to right,transparent,#9184d9,#9184d9,transparent)"></div>
+    <div style="position:absolute;left:-260px;right:-260px;bottom:0;height:34px;background:repeating-linear-gradient(105deg,rgba(145,132,217,.12) 0 1px,transparent 1px 26px);animation:oopsGround 1.4s linear infinite"></div>
+    <div style="position:absolute;left:0;bottom:36px;width:34px;height:70px;border-radius:3px;background:linear-gradient(180deg,#3f424d,#232532);box-shadow:inset 0 0 0 1px #595d6c;animation:oopsScroll 5s linear infinite"></div>
+    <div style="position:absolute;left:0;bottom:36px;width:34px;height:44px;border-radius:3px;background:linear-gradient(180deg,#3f424d,#232532);box-shadow:inset 0 0 0 1px #595d6c;animation:oopsScroll 5s linear -2.5s infinite"></div>
+  </div>
+</div>
+</div></div>
+
+</div>
+<p class="dv-next">Try next: "сделай прыжок по клику рабочим на десктопе" · "экран подключения TON-кошелька пошагово" · "добавь экран игры над/под землёй (ускорение)"</p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;guest&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Account state&quot;},&quot;tonConnected&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Account state&quot;}}">
+class Component extends DCLogic {
+  state = { t: 0, bump: 0 };
+  componentDidMount() {
+    this.timer = setInterval(() => this.setState(s => ({ t: s.t + 1 })), 90);
+  }
+  componentWillUnmount() { clearInterval(this.timer); }
+  renderVals() {
+    const t = this.state.t;
+    const score = 4812 + t * 7 + this.state.bump * 50;
+    const secs = 43 + Math.floor(t * 0.09);
+    return {
+      guest: this.props.guest ?? true,
+      tonConnected: this.props.tonConnected ?? false,
+      score: score.toLocaleString('en-US').replace(/,/g, ' '),
+      distance: (1240 + t * 2).toLocaleString('en-US'),
+      balance: (13690 + Math.floor(t * 0.6)).toLocaleString('en-US'),
+      clock: Math.floor(secs / 60) + ':' + String(secs % 60).padStart(2, '0'),
+      jump: () => this.setState(s => ({ bump: s.bump + 1 })),
+    };
+  }
+}
+</script>
+</body>
+</html>
