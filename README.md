@@ -66,6 +66,33 @@ cd frontend
 npm test
 ```
 
+## One-click deploy (Render)
+
+`render.yaml` at the repo root is a Render Blueprint: it provisions one free
+Postgres database, one free Redis instance, the backend as a web service, and
+the frontend as a static site, wired together automatically.
+
+1. Click **[Deploy to Render](https://render.com/deploy?repo=https://github.com/kirilliusbrekhem-hub/OOPS-CUBE)**
+   (needs a free Render account — no card required for the free tier).
+2. Render provisions all four resources and builds them. First build takes a
+   few minutes.
+3. **If the frontend can't reach the API** (the one cross-service link Render's
+   blueprint format doesn't always resolve automatically): open the
+   `oops-cube-backend` service, copy its URL from the top of its dashboard page
+   (looks like `https://oops-cube-backend-xxxx.onrender.com`), then open
+   `oops-cube-frontend` → Environment, set `VITE_API_URL` to that exact URL,
+   and trigger **Manual Deploy → Deploy latest commit** on the frontend so it
+   rebuilds with it.
+4. Create an admin account by opening a Shell on the `oops-cube-backend`
+   service (Render dashboard → Shell tab) and running
+   `npm run create-admin -- <username> <password>`.
+
+Free-tier notes: the free web service spins down after inactivity, so the
+first request after a quiet period takes a few extra seconds to wake it back
+up — that's expected, not a bug. Render's free-tier limits (database expiry,
+etc.) are Render's to set and may have changed since this was written; check
+their current pricing page if anything here looks off.
+
 ## Deployment notes
 
 These constraints were deliberate, not accidental — keep them if you change the
