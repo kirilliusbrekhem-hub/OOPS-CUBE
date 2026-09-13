@@ -220,7 +220,7 @@ export default function TopUp() {
         <img src={coin} alt="!OOPS!" style={{ width: 28, height: 28, flex: 'none' }} />
         <div style={{ flex: 1 }}>
           <div style={{ font: "500 13px/1.25 'Inter',sans-serif", color: '#e9e9ed' }}>Looking for the coin?</div>
-          <div style={{ font: "400 11px/1.35 'Inter',sans-serif", color: '#75798c' }}>!OOPS! (OP$) is a planned token, tracked separately from CUBES — not deployed yet</div>
+          <div style={{ font: "400 11px/1.35 'Inter',sans-serif", color: '#75798c' }}>!OOPS! (OP$) is live on TON, tracked separately from CUBES</div>
         </div>
         <span style={{ font: "500 11px/1 'Inter',sans-serif", color: '#b5abfc' }}>Open</span>
       </Link>

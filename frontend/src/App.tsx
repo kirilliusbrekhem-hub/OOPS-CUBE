@@ -8,7 +8,7 @@ import Profile from './screens/Profile';
 import Quests from './screens/Quests';
 import Result from './screens/Result';
 import Run from './screens/Run';
-import Skins from './screens/Skins';
+import Shop from './screens/Shop';
 import TopUp from './screens/TopUp';
 
 const TONCONNECT_MANIFEST_URL = 'https://oops-cube-frontend.onrender.com/tonconnect-manifest.json';
@@ -30,7 +30,8 @@ function AppRoutes() {
       <Route path="/topup" element={<TopUp />} />
       <Route path="/oops" element={<Coin />} />
       <Route path="/profile" element={<Profile />} />
-      <Route path="/skins" element={<Skins />} />
+      <Route path="/shop" element={<Shop />} />
+      <Route path="/skins" element={<Navigate to="/shop" replace />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

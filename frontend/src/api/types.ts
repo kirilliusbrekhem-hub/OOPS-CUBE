@@ -121,6 +121,36 @@ export interface TopupOrderDTO {
   completedAt: string | null;
 }
 
+export interface ChestOddsDTO {
+  type: 'cubes' | 'skin';
+  oddsPercent: number;
+  minCubes?: number;
+  maxCubes?: number;
+}
+
+export interface ChestDTO {
+  code: string;
+  name: string;
+  priceCubes: number;
+  odds: ChestOddsDTO[];
+}
+
+export interface ChestSkinReward {
+  id: string;
+  code: string;
+  name: string;
+  topColor: string;
+  leftColor: string;
+  rightColor: string;
+}
+
+export interface ChestOpenResult {
+  rewardType: 'cubes' | 'skin';
+  cubesAmount?: number;
+  skin?: ChestSkinReward;
+  player: PlayerDTO;
+}
+
 export interface FutureTokenHistoryEntry {
   amount: number;
   source: string;

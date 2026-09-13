@@ -143,7 +143,7 @@ export default function Profile() {
       )}
 
       <Link
-        to="/skins"
+        to="/shop"
         style={{
           position: 'relative',
           margin: '20px 20px 0',
@@ -159,10 +159,10 @@ export default function Profile() {
       >
         <CubeRunner skin={skin} size={38} />
         <div style={{ flex: 1 }}>
-          <div style={{ font: "500 14px/1.2 'Inter',sans-serif", color: '#e9e9ed' }}>Cube skins</div>
-          <div style={{ font: "400 11px/1.3 'Inter',sans-serif", color: '#75798c' }}>{skin.name} equipped</div>
+          <div style={{ font: "500 14px/1.2 'Inter',sans-serif", color: '#e9e9ed' }}>Shop</div>
+          <div style={{ font: "400 11px/1.3 'Inter',sans-serif", color: '#75798c' }}>Skins, chests — {skin.name} equipped</div>
         </div>
-        <span style={{ font: "500 11px/1 'Inter',sans-serif", color: '#9184d9' }}>Change →</span>
+        <span style={{ font: "500 11px/1 'Inter',sans-serif", color: '#9184d9' }}>Open →</span>
       </Link>
 
       <div style={{ position: 'relative', margin: '20px 20px 0' }}>
@@ -172,7 +172,7 @@ export default function Profile() {
             <img src={coin} alt="!OOPS!" style={{ width: 34, height: 34, flex: 'none' }} />
             <div style={{ flex: 1 }}>
               <div style={{ font: "500 15px/1.2 'Inter',sans-serif", color: '#e9e9ed' }}>!OOPS! · OP$</div>
-              <div style={{ font: "400 11px/1.3 'Inter',sans-serif", color: '#75798c' }}>Pre-launch accrual — nothing to trade yet</div>
+              <div style={{ font: "400 11px/1.3 'Inter',sans-serif", color: '#75798c' }}>Live on TON — connect a wallet to claim</div>
             </div>
             <Link to="/oops" style={{ font: "500 11px/1 'Inter',sans-serif", color: '#b5abfc', textDecoration: 'none' }}>
               Details

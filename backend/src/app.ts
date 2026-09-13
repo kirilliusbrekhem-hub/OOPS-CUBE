@@ -12,6 +12,7 @@ import { gameRouter } from './modules/game/router';
 import { leaderboardRouter } from './modules/leaderboard/router';
 import { playersRouter } from './modules/players/router';
 import { questsRouter } from './modules/quests/router';
+import { shopRouter } from './modules/shop/router';
 import { skinsRouter } from './modules/skins/router';
 import { topupRouter } from './modules/topup/router';
 import { walletRouter } from './modules/wallet/router';
@@ -54,6 +55,7 @@ export function createApp(deps: AppDeps = {}): Express {
   app.use('/api/topup', topupRouter(pool));
   app.use('/api/wallet', walletRouter(pool));
   app.use('/api/skins', skinsRouter(pool));
+  app.use('/api/shop', shopRouter(pool));
   app.use('/api/admin', adminRouter(pool));
 
   app.use(notFoundHandler);

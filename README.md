@@ -112,13 +112,40 @@ build:
 - Run `npm run migrate` once against the production database after deploying a
   new backend version (or wire it into your deploy pipeline's release step).
 
-## Cube skins
+## Shop: cube skins and chests
 
-Cosmetic recolors of the isometric cube mark — no new art assets, just
-different `top_color`/`left_color`/`right_color` values (`cube_skins` table,
-seeded with Classic/free, Plasma/Glacier/Ember/Void priced in CUBES). The
-equipped skin is what jumps in Run and appears on the Result screen —
-`GET/POST /api/skins`, picker at `/skins`.
+`/shop` has two tabs:
+
+- **Skins** — cosmetic recolors of the isometric cube mark, no new art
+  assets, just different `top_color`/`left_color`/`right_color` values
+  (`cube_skins` table, nine seeded skins from free Classic up through Nebula).
+  The equipped skin is what jumps in Run and appears on the Result screen —
+  `GET/POST /api/skins`.
+- **Chests** — `src/modules/shop/chests.ts` defines three static reward
+  tables (Small Cache/Big Vault/Legendary Chest), each a weighted mix of a
+  CUBES payout range or a random unowned skin. Opening one debits the price
+  and rolls server-side inside one DB transaction (`POST
+  /api/shop/chests/:code/open`); the odds are returned by `GET
+  /api/shop/chests` and shown in the UI. No admin CRUD yet, same static
+  pattern as `topup/packages.ts`.
+
+## Run screen: obstacles and bosses
+
+The endless-runner track (`useRunnerGame`, `screens/Run.tsx`) spawns three
+regular obstacle kinds at random (spike, wall, drone) plus a bigger "boss"
+obstacle every sixth spawn, worth a larger score/distance bonus when
+cleared. The track layout uses a flex column with a guaranteed minimum
+height instead of fixed pixel offsets, specifically so the jump arc and
+tall obstacles (including the boss) never get clipped by the screen's
+`overflow: hidden` on short viewports.
+
+The game-loop's `setInterval` callback mutates its timing refs (danger
+window, obstacle kind, next-spawn time) directly in the callback body
+rather than inside a `setState` updater function — React 18 StrictMode
+double-invokes updater functions in development, which would silently
+double-apply those mutations and made obstacles intermittently fail to
+render during local dev testing. Keeping the updaters pure (plain
+functions of `state`) avoids that.
 
 ## Anti-abuse: guest signup rate limiting
 

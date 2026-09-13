@@ -9,10 +9,17 @@ const SCORE_PER_TICK = 2; // 20 pts/s baseline, under the server's 50 pts/s cap
 const OBSTACLE_MIN_GAP_MS = 1500;
 const OBSTACLE_MAX_GAP_MS = 2600;
 const REACTION_WINDOW_MS = 700;
+const BOSS_REACTION_WINDOW_MS = 850;
 const CLEAR_SCORE_BONUS = 25;
 const CLEAR_DISTANCE_BONUS = 5;
+const BOSS_CLEAR_SCORE_BONUS = 60;
+const BOSS_CLEAR_DISTANCE_BONUS = 12;
+const BOSS_EVERY_NTH_OBSTACLE = 6;
 
 export type RunnerStatus = 'loading' | 'running' | 'ending' | 'crashed' | 'error';
+export type ObstacleKind = 'spike' | 'wall' | 'drone' | 'boss';
+
+const NORMAL_OBSTACLE_KINDS: ObstacleKind[] = ['spike', 'wall', 'drone'];
 
 export interface RunnerState {
   status: RunnerStatus;
@@ -21,6 +28,7 @@ export interface RunnerState {
   clockSeconds: number;
   combo: number;
   danger: boolean;
+  obstacleKind: ObstacleKind | null;
   jumping: boolean;
   lastBonus: number | null;
 }
@@ -37,6 +45,7 @@ export function useRunnerGame(onEnded: (result: EndSessionResponse) => void) {
     clockSeconds: 0,
     combo: 0,
     danger: false,
+    obstacleKind: null,
     jumping: false,
     lastBonus: null,
   });
@@ -45,8 +54,15 @@ export function useRunnerGame(onEnded: (result: EndSessionResponse) => void) {
   const idempotencyKeyRef = useRef<string>(crypto.randomUUID());
   const pendingScoreRef = useRef(0);
   const pendingDistanceRef = useRef(0);
+  // Source of truth for game-loop decisions, mutated only from plain interval
+  // / event callbacks (never from inside a setState updater — React 18
+  // StrictMode double-invokes those in dev, which would double-apply any
+  // mutation living there).
+  const dangerRef = useRef(false);
+  const obstacleKindRef = useRef<ObstacleKind | null>(null);
   const dangerDeadlineRef = useRef<number | null>(null);
   const nextObstacleAtRef = useRef(0);
+  const obstacleCountRef = useRef(0);
   const startedAtRef = useRef(0);
   const endingRef = useRef(false);
 
@@ -73,13 +89,25 @@ export function useRunnerGame(onEnded: (result: EndSessionResponse) => void) {
   }, [onEnded]);
 
   const jump = useCallback(() => {
+    const wasDanger = dangerRef.current;
+    const kind = obstacleKindRef.current;
+    let scoreBonus = 0;
+
+    if (wasDanger) {
+      const isBoss = kind === 'boss';
+      scoreBonus = isBoss ? BOSS_CLEAR_SCORE_BONUS : CLEAR_SCORE_BONUS;
+      const distanceBonus = isBoss ? BOSS_CLEAR_DISTANCE_BONUS : CLEAR_DISTANCE_BONUS;
+      dangerRef.current = false;
+      obstacleKindRef.current = null;
+      dangerDeadlineRef.current = null;
+      pendingScoreRef.current += scoreBonus;
+      pendingDistanceRef.current += distanceBonus;
+    }
+
     setState((s) => {
       if (s.status !== 'running') return s;
-      if (s.danger) {
-        dangerDeadlineRef.current = null;
-        pendingScoreRef.current += CLEAR_SCORE_BONUS;
-        pendingDistanceRef.current += CLEAR_DISTANCE_BONUS;
-        return { ...s, danger: false, jumping: true, combo: s.combo + 1, lastBonus: CLEAR_SCORE_BONUS };
+      if (wasDanger) {
+        return { ...s, danger: false, obstacleKind: null, jumping: true, combo: s.combo + 1, lastBonus: scoreBonus };
       }
       return { ...s, jumping: true };
     });
@@ -100,29 +128,37 @@ export function useRunnerGame(onEnded: (result: EndSessionResponse) => void) {
       setState((s) => ({ ...s, status: 'running' }));
 
       tickTimer = window.setInterval(() => {
-        setState((s) => {
-          if (s.status !== 'running') return s;
+        pendingScoreRef.current += SCORE_PER_TICK;
+        pendingDistanceRef.current += DISTANCE_PER_TICK;
 
-          pendingScoreRef.current += SCORE_PER_TICK;
-          pendingDistanceRef.current += DISTANCE_PER_TICK;
+        const now = Date.now();
+        const clockSeconds = (now - startedAtRef.current) / 1000;
 
-          const now = Date.now();
-          let danger = s.danger;
+        if (dangerDeadlineRef.current !== null && now >= dangerDeadlineRef.current) {
+          dangerDeadlineRef.current = null;
+          dangerRef.current = false;
+          obstacleKindRef.current = null;
+          setState((s) => (s.status === 'running' ? { ...s, clockSeconds } : s));
+          endRun();
+          return;
+        }
 
-          if (dangerDeadlineRef.current !== null && now >= dangerDeadlineRef.current) {
-            dangerDeadlineRef.current = null;
-            window.setTimeout(() => endRun(), 0);
-            return { ...s, clockSeconds: (now - startedAtRef.current) / 1000 };
-          }
+        if (!dangerRef.current && now >= nextObstacleAtRef.current) {
+          dangerRef.current = true;
+          obstacleCountRef.current += 1;
+          const isBoss = obstacleCountRef.current % BOSS_EVERY_NTH_OBSTACLE === 0;
+          const kind: ObstacleKind = isBoss
+            ? 'boss'
+            : NORMAL_OBSTACLE_KINDS[Math.floor(Math.random() * NORMAL_OBSTACLE_KINDS.length)];
+          obstacleKindRef.current = kind;
+          const reactionWindow = isBoss ? BOSS_REACTION_WINDOW_MS : REACTION_WINDOW_MS;
+          dangerDeadlineRef.current = now + reactionWindow;
+          nextObstacleAtRef.current = now + reactionWindow + randomBetween(OBSTACLE_MIN_GAP_MS, OBSTACLE_MAX_GAP_MS);
+          setState((s) => (s.status === 'running' ? { ...s, danger: true, obstacleKind: kind, clockSeconds } : s));
+          return;
+        }
 
-          if (!danger && now >= nextObstacleAtRef.current) {
-            danger = true;
-            dangerDeadlineRef.current = now + REACTION_WINDOW_MS;
-            nextObstacleAtRef.current = now + REACTION_WINDOW_MS + randomBetween(OBSTACLE_MIN_GAP_MS, OBSTACLE_MAX_GAP_MS);
-          }
-
-          return { ...s, danger, clockSeconds: (now - startedAtRef.current) / 1000 };
-        });
+        setState((s) => (s.status === 'running' ? { ...s, clockSeconds } : s));
       }, TICK_MS);
 
       checkpointTimer = window.setInterval(async () => {

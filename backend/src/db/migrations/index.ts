@@ -12,6 +12,7 @@ import m0010 from './0010_admin_users';
 import m0011 from './0011_cube_skins';
 import m0012 from './0012_seed_cube_skins';
 import m0013 from './0013_ton_wallet';
+import m0014 from './0014_shop_chests';
 
 export const migrations: Migration[] = [
   m0001,
@@ -27,4 +28,5 @@ export const migrations: Migration[] = [
   m0011,
   m0012,
   m0013,
+  m0014,
 ];

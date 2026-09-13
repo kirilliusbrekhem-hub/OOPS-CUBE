@@ -41,24 +41,29 @@
 }
 
 @keyframes oopsJump {
-  0%,
+  0% {
+    transform: translateY(0) rotate(-4deg) scale(1, 1);
+  }
+  8% {
+    transform: translateY(2px) rotate(-6deg) scale(1.12, 0.85);
+  }
   42% {
-    transform: translateY(0) rotate(-4deg);
+    transform: translateY(-38px) rotate(4deg) scale(0.96, 1.05);
   }
   54% {
-    transform: translateY(-118px) rotate(6deg);
+    transform: translateY(-84px) rotate(10deg) scale(0.93, 1.08);
   }
   62% {
-    transform: translateY(-128px) rotate(9deg);
+    transform: translateY(-92px) rotate(14deg) scale(0.93, 1.08);
   }
   82% {
-    transform: translateY(0) rotate(-2deg);
+    transform: translateY(-8px) rotate(-2deg) scale(1.02, 0.98);
   }
-  88% {
-    transform: translateY(-9px) rotate(-5deg);
+  92% {
+    transform: translateY(2px) rotate(-6deg) scale(1.14, 0.83);
   }
   100% {
-    transform: translateY(0) rotate(-4deg);
+    transform: translateY(0) rotate(-4deg) scale(1, 1);
   }
 }
 
@@ -104,6 +109,46 @@
   }
   to {
     transform: translateX(0);
+  }
+}
+
+@keyframes oopsDust {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.4);
+  }
+  40% {
+    opacity: 0.7;
+    transform: translateX(-50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) scale(1.8);
+  }
+}
+
+@keyframes chestRevealPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.85) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes chestRevealSpin {
+  0% {
+    transform: rotate(0) scale(0.5);
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    opacity: 1;
   }
 }
 

@@ -1,4 +1,6 @@
 import type {
+  ChestDTO,
+  ChestOpenResult,
   CubeSkinDTO,
   DailiesResponse,
   EndSessionResponse,
@@ -127,6 +129,10 @@ export const api = {
     request<{ skin: CubeSkinDTO; player: PlayerDTO }>(`/api/skins/${id}/purchase`, { method: 'POST' }),
 
   equipSkin: (id: string) => request<{ player: PlayerDTO }>(`/api/skins/${id}/equip`, { method: 'POST' }),
+
+  chests: () => request<{ chests: ChestDTO[] }>('/api/shop/chests'),
+
+  openChest: (code: string) => request<ChestOpenResult>(`/api/shop/chests/${code}/open`, { method: 'POST' }),
 
   tokenInfo: () => request<TokenInfoResponse>('/api/wallet/token-info'),
 
