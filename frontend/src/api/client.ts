@@ -12,6 +12,7 @@ import type {
   TokenInfoResponse,
   TopupOrderDTO,
   TopupPackage,
+  TopupPaymentInfo,
 } from './types';
 
 const API_URL = import.meta.env.VITE_API_URL ?? '';
@@ -110,6 +111,8 @@ export const api = {
     request<{ task: unknown; player: PlayerDTO }>(`/api/dailies/${id}/claim`, { method: 'POST' }),
 
   topupPackages: () => request<{ packages: TopupPackage[] }>('/api/topup/packages'),
+
+  topupPaymentInfo: () => request<TopupPaymentInfo>('/api/topup/payment-info'),
 
   createTopupOrder: (body: { packageCode: string; currency: 'RUB' | 'USD' }) =>
     request<{ order: TopupOrderDTO; note: string }>('/api/topup/orders', { method: 'POST', body: JSON.stringify(body) }),

@@ -168,11 +168,16 @@ update both the `url`/`iconUrl` fields in that file and redeploy.
   with a TODO; top-up orders stay `pending` until an admin manually completes
   them via `POST /api/admin/topup-orders/:id/complete`. Wiring up a real one
   (e.g. ЮKassa/CloudPayments for RUB, Stripe for international cards) needs
-  that provider's own account and API keys — ask the owner of this repo. A
-  lower-tech alternative that needs no processor at all: show the owner's
-  own SBP phone number or card number for a manual bank transfer, and credit
-  CUBES the same way top-up orders are completed today (admin marks it paid
-  by hand) — ask if this is wanted; it just needs the payout details to show.
+  that provider's own account and API keys — ask the owner of this repo.
+  In the meantime, RUB orders use a lower-tech manual alternative that needs
+  no processor account at all: `GET /api/topup/payment-info` exposes the
+  owner's own SBP phone number (set via `SBP_PHONE_NUMBER` env var, defaults
+  to a number the owner chose to publish for this purpose), and the top-up
+  screen shows it with a copy button plus the exact amount to transfer once
+  an order is created. The donor transfers by hand via their banking app,
+  and the admin confirms the order the same way as any other top-up (`POST
+  /api/admin/topup-orders/:id/complete`), which credits CUBES. No card
+  numbers, bank credentials, or payment processor integration involved.
 - The streak's reward bonus multiplier is computed and shown, but not yet
   applied to actual reward crediting.
 - Leaderboard's "Friends" / "Today" tabs are visual only (Global is the only

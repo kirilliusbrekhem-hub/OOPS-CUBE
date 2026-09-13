@@ -96,6 +96,10 @@ export interface DailiesResponse {
   streak: StreakDTO;
 }
 
+export interface TopupPaymentInfo {
+  sbpPhoneNumber: string;
+}
+
 export interface TopupPackage {
   code: string;
   label: string;

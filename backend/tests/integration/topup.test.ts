@@ -39,6 +39,28 @@ describe('topup routes', () => {
     expect(res.status).toBe(501);
   });
 
+  it('exposes the SBP phone number without auth', async () => {
+    const res = await request(app).get('/api/topup/payment-info');
+    expect(res.status).toBe(200);
+    expect(res.body.sbpPhoneNumber).toEqual(expect.any(String));
+    expect(res.body.sbpPhoneNumber.length).toBeGreaterThan(0);
+  });
+
+  it('includes SBP transfer instructions for a RUB order but not for a USD one', async () => {
+    const auth = await authHeader();
+    const rub = await request(app)
+      .post('/api/topup/orders')
+      .set('Authorization', auth)
+      .send({ packageCode: 'starter', currency: 'RUB' });
+    expect(rub.body.note).toMatch(/SBP/);
+
+    const usd = await request(app)
+      .post('/api/topup/orders')
+      .set('Authorization', auth)
+      .send({ packageCode: 'starter', currency: 'USD' });
+    expect(usd.body.note).not.toMatch(/SBP/);
+  });
+
   it('requires auth to create an order', async () => {
     const res = await request(app).post('/api/topup/orders').send({ packageCode: 'starter', currency: 'RUB' });
     expect(res.status).toBe(401);

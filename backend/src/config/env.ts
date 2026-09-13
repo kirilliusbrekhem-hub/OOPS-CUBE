@@ -22,4 +22,8 @@ export const env = {
   // phrase for any wallet is ever stored in this app; see README.
   opTokenContractAddress:
     process.env.OP_TOKEN_CONTRACT_ADDRESS ?? 'EQDkJ7JFweQazs_OFkvgLeGfv7B0Acn87bHbeytk5TbE179T',
+  // The project owner's own phone number for manual SBP transfers — not a
+  // secret, they chose to publish it for this purpose. No payment
+  // processor is involved; see README "top-up" section.
+  sbpPhoneNumber: process.env.SBP_PHONE_NUMBER ?? '+79217555637',
 };

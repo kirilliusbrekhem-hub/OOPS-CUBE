@@ -20,11 +20,22 @@ export default function TopUp() {
   const [currency, setCurrency] = useState<Currency>('RUB');
   const [pendingOrder, setPendingOrder] = useState<TopupOrderDTO | null>(null);
   const [orders, setOrders] = useState<TopupOrderDTO[]>([]);
+  const [sbpPhoneNumber, setSbpPhoneNumber] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     api.topupPackages().then((res) => setPackages(res.packages));
     api.topupOrders().then((res) => setOrders(res.orders));
+    api.topupPaymentInfo().then((res) => setSbpPhoneNumber(res.sbpPhoneNumber));
   }, []);
+
+  const copyPhoneNumber = useCallback(() => {
+    if (!sbpPhoneNumber) return;
+    navigator.clipboard?.writeText(sbpPhoneNumber).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    });
+  }, [sbpPhoneNumber]);
 
   const buy = useCallback(async (pkg: TopupPackage) => {
     const res = await api.createTopupOrder({ packageCode: pkg.code, currency });
@@ -152,7 +163,50 @@ export default function TopUp() {
         ))}
       </div>
 
-      {pendingOrder && (
+      {pendingOrder && pendingOrder.priceCurrency === 'RUB' && (
+        <div style={{ margin: '16px 20px 0', padding: '15px', borderRadius: 12, background: 'rgba(35,37,50,.7)', boxShadow: '0 0 0 1px #423a6a' }}>
+          <div style={{ font: "500 12px/1.4 'Inter',sans-serif", color: '#e9e9ed', marginBottom: 8 }}>
+            Order created for {pendingOrder.cubesAmount.toLocaleString('en-US')} CUBES — status: {pendingOrder.status}.
+          </div>
+          <div style={{ font: "400 12px/1.5 'Inter',sans-serif", color: '#b2b6ca', marginBottom: 10 }}>
+            Transfer <strong style={{ color: '#e9e9ed' }}>{(pendingOrder.priceAmount / 100).toLocaleString('ru-RU')} ₽</strong> via SBP
+            to the number below, then it's confirmed by hand — the order stays pending until then.
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 10,
+              padding: '10px 12px',
+              borderRadius: 10,
+              boxShadow: 'inset 0 0 0 1px #595d6c',
+            }}
+          >
+            <span style={{ font: "600 15px/1 'Inter',sans-serif", fontVariantNumeric: 'tabular-nums', color: '#e9e9ed' }}>
+              {sbpPhoneNumber ?? '…'}
+            </span>
+            <button
+              type="button"
+              onClick={copyPhoneNumber}
+              disabled={!sbpPhoneNumber}
+              style={{
+                border: 'none',
+                borderRadius: 8,
+                padding: '7px 11px',
+                background: copied ? '#4c9a6a' : '#b5abfc',
+                color: '#161826',
+                font: "600 11px/1 'Inter',sans-serif",
+                cursor: sbpPhoneNumber ? 'pointer' : 'default',
+              }}
+            >
+              {copied ? 'Copied' : 'Copy'}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {pendingOrder && pendingOrder.priceCurrency === 'USD' && (
         <div style={{ margin: '16px 20px 0', padding: '13px 15px', borderRadius: 12, background: 'rgba(35,37,50,.7)', boxShadow: '0 0 0 1px #423a6a', font: "400 12px/1.4 'Inter',sans-serif", color: '#b2b6ca' }}>
           Order created for {pendingOrder.cubesAmount.toLocaleString('en-US')} CUBES — status: {pendingOrder.status}. No payment provider is
           connected yet, so it stays pending.

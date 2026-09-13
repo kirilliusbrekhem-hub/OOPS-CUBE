@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { Pool } from 'pg';
 import { z } from 'zod';
+import { env } from '../../config/env';
 import { requireAuth } from '../../middleware/auth';
 import { ApiError } from '../../middleware/errorHandler';
 import { validateBody } from '../../middleware/validate';
@@ -18,6 +19,13 @@ export function topupRouter(pool: Pool): Router {
 
   router.get('/packages', (_req, res) => {
     res.json({ packages: TOPUP_PACKAGES });
+  });
+
+  // Public: no processor is integrated for RUB — this is the project
+  // owner's own phone number for a manual SBP bank transfer. Not a secret;
+  // they chose to publish it for exactly this purpose.
+  router.get('/payment-info', (_req, res) => {
+    res.json({ sbpPhoneNumber: env.sbpPhoneNumber });
   });
 
   // TODO(payments): wire up a real provider (e.g. Stripe Checkout + this
@@ -53,10 +61,11 @@ export function topupRouter(pool: Pool): Router {
         throw new ApiError(404, 'package_not_found', 'Unknown top-up package');
       }
       const order = await repo.createOrder(pool, req.auth!.playerId, pkg, req.body.currency);
-      res.status(201).json({
-        order: serializeOrder(order),
-        note: 'Design mockup — no real payment flow. Orders stay pending until a payment provider is wired up.',
-      });
+      const note =
+        req.body.currency === 'RUB'
+          ? `Transfer the order amount via SBP to ${env.sbpPhoneNumber}, then it's confirmed by hand — this stays pending until then.`
+          : 'No card payment provider connected yet. Orders stay pending until one is wired up.';
+      res.status(201).json({ order: serializeOrder(order), note });
     } catch (err) {
       next(err);
     }
