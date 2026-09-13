@@ -10,6 +10,7 @@ import * as dailiesRepo from '../dailies/repository';
 import * as questsRepo from '../quests/repository';
 import * as topupRepo from '../topup/repository';
 import { serializeOrder } from '../topup/serialize';
+import * as walletRepo from '../wallet/repository';
 import * as repo from './repository';
 import * as adminService from './service';
 
@@ -212,6 +213,58 @@ export function adminRouter(pool: Pool): Router {
 
       await client.query('COMMIT');
       res.json({ order: serializeOrder(completed), player: serializePlayer(player) });
+    } catch (err) {
+      await client.query('ROLLBACK');
+      next(err);
+    } finally {
+      client.release();
+    }
+  });
+
+  router.get('/payout-requests', async (req, res, next) => {
+    try {
+      const status = req.query.status === 'pending' || req.query.status === 'paid' ? req.query.status : undefined;
+      const requests = await walletRepo.listPayoutRequests(pool, status);
+      res.json({
+        requests: requests.map((r) => ({
+          id: r.id,
+          playerId: r.player_id,
+          amount: r.amount,
+          tonWalletAddress: r.ton_wallet_address,
+          status: r.status,
+          requestedAt: r.requested_at.toISOString(),
+          paidAt: r.paid_at ? r.paid_at.toISOString() : null,
+        })),
+      });
+    } catch (err) {
+      next(err);
+    }
+  });
+
+  // The admin sends real OP$ from their own wallet outside this app, then
+  // marks the request paid here — no automated on-chain sending happens.
+  router.post('/payout-requests/:id/mark-paid', async (req, res, next) => {
+    const client = await pool.connect();
+    try {
+      await client.query('BEGIN');
+      const request = await walletRepo.lockPayoutRequest(client, req.params.id);
+      if (!request) throw new ApiError(404, 'request_not_found', 'Payout request not found');
+      if (request.status !== 'pending') {
+        throw new ApiError(409, 'request_not_pending', 'Request is not pending');
+      }
+      const paid = await walletRepo.markPayoutRequestPaid(client, request.id);
+      await client.query('COMMIT');
+      res.json({
+        request: {
+          id: paid.id,
+          playerId: paid.player_id,
+          amount: paid.amount,
+          tonWalletAddress: paid.ton_wallet_address,
+          status: paid.status,
+          requestedAt: paid.requested_at.toISOString(),
+          paidAt: paid.paid_at ? paid.paid_at.toISOString() : null,
+        },
+      });
     } catch (err) {
       await client.query('ROLLBACK');
       next(err);

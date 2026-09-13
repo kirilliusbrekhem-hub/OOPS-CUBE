@@ -5,9 +5,11 @@ import type {
   FutureTokenResponse,
   LeaderboardPage,
   MyRank,
+  PayoutRequestDTO,
   PlayerDTO,
   QuestDTO,
   StartSessionResponse,
+  TokenInfoResponse,
   TopupOrderDTO,
   TopupPackage,
 } from './types';
@@ -122,4 +124,12 @@ export const api = {
     request<{ skin: CubeSkinDTO; player: PlayerDTO }>(`/api/skins/${id}/purchase`, { method: 'POST' }),
 
   equipSkin: (id: string) => request<{ player: PlayerDTO }>(`/api/skins/${id}/equip`, { method: 'POST' }),
+
+  tokenInfo: () => request<TokenInfoResponse>('/api/wallet/token-info'),
+
+  connectTonWallet: (address: string) =>
+    request<{ player: PlayerDTO }>('/api/wallet/ton-connect', { method: 'POST', body: JSON.stringify({ address }) }),
+
+  requestPayout: () =>
+    request<{ request: PayoutRequestDTO }>('/api/wallet/payout-request', { method: 'POST' }),
 };

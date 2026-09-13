@@ -95,8 +95,19 @@ export interface PlayerRow {
   runs_count: number;
   guest_number: string; // bigserial comes back as string
   equipped_skin_id: string | null;
+  ton_wallet_address: string | null;
   created_at: Date;
   last_seen_at: Date;
+}
+
+export interface TokenPayoutRequestRow {
+  id: string;
+  player_id: string;
+  amount: number;
+  ton_wallet_address: string;
+  status: 'pending' | 'paid';
+  requested_at: Date;
+  paid_at: Date | null;
 }
 
 export interface CubeSkinRow {

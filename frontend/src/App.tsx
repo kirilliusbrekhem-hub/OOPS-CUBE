@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { AuthProvider, useAuth } from './state/AuthContext';
 import Coin from './screens/Coin';
 import Home from './screens/Home';
@@ -9,6 +10,8 @@ import Result from './screens/Result';
 import Run from './screens/Run';
 import Skins from './screens/Skins';
 import TopUp from './screens/TopUp';
+
+const TONCONNECT_MANIFEST_URL = 'https://oops-cube-frontend.onrender.com/tonconnect-manifest.json';
 
 function AppRoutes() {
   const { loading } = useAuth();
@@ -35,9 +38,11 @@ function AppRoutes() {
 
 function App() {
   return (
-    <AuthProvider>
-      <AppRoutes />
-    </AuthProvider>
+    <TonConnectUIProvider manifestUrl={TONCONNECT_MANIFEST_URL}>
+      <AuthProvider>
+        <AppRoutes />
+      </AuthProvider>
+    </TonConnectUIProvider>
   );
 }
 

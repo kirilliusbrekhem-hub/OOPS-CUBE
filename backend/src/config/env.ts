@@ -18,4 +18,8 @@ export const env = {
   jwtSecret: required('JWT_SECRET', 'dev-secret-change-me'),
   adminJwtSecret: required('ADMIN_JWT_SECRET', 'dev-admin-secret-change-me'),
   guestSignupsPerIpPerDay: parseInt(process.env.GUEST_SIGNUPS_PER_IP_PER_DAY ?? '3', 10),
+  // Public jetton contract address — not a secret. No private key or seed
+  // phrase for any wallet is ever stored in this app; see README.
+  opTokenContractAddress:
+    process.env.OP_TOKEN_CONTRACT_ADDRESS ?? 'EQDkJ7JFweQazs_OFkvgLeGfv7B0Acn87bHbeytk5TbE179T',
 };

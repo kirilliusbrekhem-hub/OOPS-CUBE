@@ -2,8 +2,9 @@
 
 A browser endless-runner with a guest-first onboarding flow, server-authoritative
 scoring, quests/daily tasks with a login streak, an in-game currency (CUBES) with
-a top-up stub, and bookkeeping for a possible future token (OP$) — no real
-payments and no real blockchain integration are wired up yet, by design.
+a top-up stub, real TonConnect wallet connection, and a manual payout-request
+flow for a real deployed token (OP$) — no automated payments and no wallet
+private keys are ever handled by this app, by design (see below).
 
 Visual design source: `project/OOPS CUBE.dc.html` (a Claude Design handoff bundle;
 `chats/` has the original design conversation for context).
@@ -130,23 +131,48 @@ phone/ID verification, which is a separate, bigger feature. Requires
 `app.set('trust proxy', true)` (already set) so `req.ip` reflects the real
 client behind Render's load balancer, not the proxy's own address.
 
+## TON wallet connection and OP$ payouts
+
+`OP_TOKEN_CONTRACT_ADDRESS` (env var, defaults to the address the project
+owner provided) is public information — a jetton contract address, not a
+secret — shown on the Coin screen with a copy button.
+
+Wallet connection is real **TonConnect** (`@tonconnect/ui-react`): a player's
+own wallet (Tonkeeper, MyTonWallet, Wallet in Telegram) signs with its own
+key, which never reaches this app or its server. The connected address is
+just stored on the player row (`players.ton_wallet_address`) via
+`POST /api/wallet/ton-connect`.
+
+**No automated on-chain sending exists, and none should be added without a
+real security review.** `POST /api/wallet/payout-request` does not send any
+OP$ — it locks the player's currently-accrued (`future_token_ledger`,
+`converted = false`) balance, records a `token_payout_requests` row with
+their wallet address and the amount owed, and stops there. The project owner
+reviews `GET /api/admin/payout-requests?status=pending`, sends the real OP$
+from their own wallet outside this app, then calls
+`POST /api/admin/payout-requests/:id/mark-paid`. **Never add a real wallet
+private key or seed phrase to this codebase or its environment variables**
+— a compromised MVP-quality deploy with a funded, key-holding hot wallet is
+a direct path to real fund theft. Automating the send step later needs a
+separately-funded hot wallet, spending limits, monitoring, and a real
+security review — not a quick addition.
+
+`frontend/public/tonconnect-manifest.json` must be reachable at the
+frontend's actual public URL (wallets fetch it directly) — it's pre-filled
+for `https://oops-cube-frontend.onrender.com`; if your deployed URL differs,
+update both the `url`/`iconUrl` fields in that file and redeploy.
+
 ## Known scope cuts (intentional, for a follow-up)
 
 - No real payment provider: `POST /api/topup/webhook/stripe` is a stubbed 501
   with a TODO; top-up orders stay `pending` until an admin manually completes
   them via `POST /api/admin/topup-orders/:id/complete`. Wiring up a real one
   (e.g. ЮKassa/CloudPayments for RUB, Stripe for international cards) needs
-  that provider's own account and API keys — ask the owner of this repo.
-- No real blockchain integration: `future_token_ledger` is pure bookkeeping.
-  There is no wallet connection, no contract, no token — the UI says so.
-  **Never add a real wallet private key or seed phrase to this codebase or
-  its environment variables** — a compromised MVP-quality deploy with a
-  funded hot wallet is a direct path to real fund theft. If real TON
-  functionality is wanted later: TonConnect (the player's own wallet signs
-  its own transactions — safe, no key custody) for wallet display, and
-  read-only on-chain balance watching for donations, are the safe pieces to
-  build first; automated payouts need a hardened, separately-funded hot
-  wallet with a real security review, not a quick addition.
+  that provider's own account and API keys — ask the owner of this repo. A
+  lower-tech alternative that needs no processor at all: show the owner's
+  own SBP phone number or card number for a manual bank transfer, and credit
+  CUBES the same way top-up orders are completed today (admin marks it paid
+  by hand) — ask if this is wanted; it just needs the payout details to show.
 - The streak's reward bonus multiplier is computed and shown, but not yet
   applied to actual reward crediting.
 - Leaderboard's "Friends" / "Today" tabs are visual only (Global is the only

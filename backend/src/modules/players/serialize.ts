@@ -10,6 +10,7 @@ export interface PlayerDTO {
   bestDistance: number;
   runsCount: number;
   equippedSkinId: string | null;
+  tonWalletAddress: string | null;
   createdAt: string;
 }
 
@@ -24,6 +25,7 @@ export function serializePlayer(row: PlayerRow): PlayerDTO {
     bestDistance: row.best_distance,
     runsCount: row.runs_count,
     equippedSkinId: row.equipped_skin_id,
+    tonWalletAddress: row.ton_wallet_address,
     createdAt: row.created_at.toISOString(),
   };
 }

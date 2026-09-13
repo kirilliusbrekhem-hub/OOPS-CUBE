@@ -8,6 +8,7 @@ export interface PlayerDTO {
   bestDistance: number;
   runsCount: number;
   equippedSkinId: string | null;
+  tonWalletAddress: string | null;
   createdAt: string;
 }
 
@@ -127,4 +128,17 @@ export interface FutureTokenHistoryEntry {
 export interface FutureTokenResponse {
   balance: number;
   history: FutureTokenHistoryEntry[];
+}
+
+export interface TokenInfoResponse {
+  contractAddress: string;
+}
+
+export interface PayoutRequestDTO {
+  id: string;
+  amount: number;
+  tonWalletAddress: string;
+  status: 'pending' | 'paid';
+  requestedAt: string;
+  paidAt: string | null;
 }
