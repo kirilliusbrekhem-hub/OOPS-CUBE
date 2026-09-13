@@ -94,6 +94,19 @@ export interface PlayerRow {
   best_distance: number;
   runs_count: number;
   guest_number: string; // bigserial comes back as string
+  equipped_skin_id: string | null;
   created_at: Date;
   last_seen_at: Date;
+}
+
+export interface CubeSkinRow {
+  id: string;
+  code: string;
+  name: string;
+  price_cubes: number;
+  top_color: string;
+  left_color: string;
+  right_color: string;
+  active: boolean;
+  created_at: Date;
 }

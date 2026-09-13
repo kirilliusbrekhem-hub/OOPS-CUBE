@@ -2,8 +2,9 @@ import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { EndSessionResponse } from '../api/types';
 import CubeIcon from '../components/CubeIcon';
+import CubeRunner from '../components/CubeRunner';
 import { useRunnerGame } from '../game/useRunnerGame';
-import runnerImg from '../assets/oops-runner.png';
+import { useEquippedSkin } from '../hooks/useEquippedSkin';
 import { useAuth } from '../state/AuthContext';
 
 function formatClock(seconds: number): string {
@@ -24,6 +25,7 @@ export default function Run() {
   );
 
   const { state, jump } = useRunnerGame(onEnded);
+  const skin = useEquippedSkin();
 
   return (
     <div style={{ minHeight: '100dvh', width: '100%', display: 'flex', justifyContent: 'center', background: '#0d0f18' }}>
@@ -106,20 +108,14 @@ export default function Run() {
           <div
             style={{
               position: 'absolute',
-              left: 52,
+              left: 46,
               bottom: 118,
-              width: 82,
-              height: 104,
+              width: 90,
+              height: 90,
               animation: state.jumping ? 'oopsJump 0.5s cubic-bezier(.3,0,.4,1)' : undefined,
             }}
           >
-            <div style={{ position: 'absolute', inset: -22, borderRadius: '50%', background: 'radial-gradient(circle,rgba(181,171,252,.3),transparent 70%)' }} />
-            <img
-              className="lighten"
-              src={runnerImg}
-              alt=""
-              style={{ position: 'relative', width: 82, height: 104, objectFit: 'contain', filter: 'drop-shadow(0 12px 18px rgba(0,0,0,.6))' }}
-            />
+            <CubeRunner skin={skin} size={90} jumping={state.jumping} />
           </div>
 
           {state.lastBonus !== null && (

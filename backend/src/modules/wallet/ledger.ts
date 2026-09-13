@@ -1,7 +1,7 @@
 import { PoolClient } from 'pg';
 import { PlayerRow } from '../../db/types';
 
-export type CubeReason = 'game_reward' | 'quest_reward' | 'daily_reward' | 'topup' | 'admin_adjustment';
+export type CubeReason = 'game_reward' | 'quest_reward' | 'daily_reward' | 'topup' | 'admin_adjustment' | 'skin_purchase';
 
 export async function creditCubes(
   client: PoolClient,

@@ -7,6 +7,7 @@ import Profile from './screens/Profile';
 import Quests from './screens/Quests';
 import Result from './screens/Result';
 import Run from './screens/Run';
+import Skins from './screens/Skins';
 import TopUp from './screens/TopUp';
 
 function AppRoutes() {
@@ -26,6 +27,7 @@ function AppRoutes() {
       <Route path="/topup" element={<TopUp />} />
       <Route path="/oops" element={<Coin />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/skins" element={<Skins />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

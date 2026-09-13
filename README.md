@@ -111,13 +111,42 @@ build:
 - Run `npm run migrate` once against the production database after deploying a
   new backend version (or wire it into your deploy pipeline's release step).
 
+## Cube skins
+
+Cosmetic recolors of the isometric cube mark — no new art assets, just
+different `top_color`/`left_color`/`right_color` values (`cube_skins` table,
+seeded with Classic/free, Plasma/Glacier/Ember/Void priced in CUBES). The
+equipped skin is what jumps in Run and appears on the Result screen —
+`GET/POST /api/skins`, picker at `/skins`.
+
+## Anti-abuse: guest signup rate limiting
+
+`POST /api/auth/guest` is capped per IP (`GUEST_SIGNUPS_PER_IP_PER_DAY`,
+default 3/day) via the same Redis rate limiter used elsewhere. This deters
+casual multi-accounting from one device/network — it is **not** a hard
+one-account-per-human guarantee (shared IPs legitimately host multiple real
+players; a determined abuser can rotate networks). A real guarantee needs
+phone/ID verification, which is a separate, bigger feature. Requires
+`app.set('trust proxy', true)` (already set) so `req.ip` reflects the real
+client behind Render's load balancer, not the proxy's own address.
+
 ## Known scope cuts (intentional, for a follow-up)
 
 - No real payment provider: `POST /api/topup/webhook/stripe` is a stubbed 501
   with a TODO; top-up orders stay `pending` until an admin manually completes
-  them via `POST /api/admin/topup-orders/:id/complete`.
+  them via `POST /api/admin/topup-orders/:id/complete`. Wiring up a real one
+  (e.g. ЮKassa/CloudPayments for RUB, Stripe for international cards) needs
+  that provider's own account and API keys — ask the owner of this repo.
 - No real blockchain integration: `future_token_ledger` is pure bookkeeping.
   There is no wallet connection, no contract, no token — the UI says so.
+  **Never add a real wallet private key or seed phrase to this codebase or
+  its environment variables** — a compromised MVP-quality deploy with a
+  funded hot wallet is a direct path to real fund theft. If real TON
+  functionality is wanted later: TonConnect (the player's own wallet signs
+  its own transactions — safe, no key custody) for wallet display, and
+  read-only on-chain balance watching for donations, are the safe pieces to
+  build first; automated payouts need a hardened, separately-funded hot
+  wallet with a real security review, not a quick addition.
 - The streak's reward bonus multiplier is computed and shown, but not yet
   applied to actual reward crediting.
 - Leaderboard's "Friends" / "Today" tabs are visual only (Global is the only

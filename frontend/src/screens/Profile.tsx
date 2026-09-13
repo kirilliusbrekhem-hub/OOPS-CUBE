@@ -5,8 +5,10 @@ import { api, ApiError } from '../api/client';
 import type { DailiesResponse, MyRank } from '../api/types';
 import Avatar from '../components/Avatar';
 import BottomNav from '../components/BottomNav';
+import CubeRunner from '../components/CubeRunner';
 import MobileScreen from '../components/MobileScreen';
 import coin from '../assets/oops-coin.png';
+import { useEquippedSkin } from '../hooks/useEquippedSkin';
 import { useAuth } from '../state/AuthContext';
 
 function StatCell({ label, value }: { label: string; value: string }) {
@@ -74,6 +76,7 @@ export default function Profile() {
   const [rank, setRank] = useState<MyRank | null>(null);
   const [dailies, setDailies] = useState<DailiesResponse | null>(null);
   const [showClaim, setShowClaim] = useState(false);
+  const skin = useEquippedSkin();
 
   useEffect(() => {
     api.myRank().then(setRank).catch(() => undefined);
@@ -138,6 +141,29 @@ export default function Profile() {
           </Link>
         </div>
       )}
+
+      <Link
+        to="/skins"
+        style={{
+          position: 'relative',
+          margin: '20px 20px 0',
+          padding: '13px 15px',
+          borderRadius: 14,
+          background: 'var(--color-surface)',
+          boxShadow: '0 0 0 1px #3f424d',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 12,
+          textDecoration: 'none',
+        }}
+      >
+        <CubeRunner skin={skin} size={38} />
+        <div style={{ flex: 1 }}>
+          <div style={{ font: "500 14px/1.2 'Inter',sans-serif", color: '#e9e9ed' }}>Cube skins</div>
+          <div style={{ font: "400 11px/1.3 'Inter',sans-serif", color: '#75798c' }}>{skin.name} equipped</div>
+        </div>
+        <span style={{ font: "500 11px/1 'Inter',sans-serif", color: '#9184d9' }}>Change →</span>
+      </Link>
 
       <div style={{ position: 'relative', margin: '20px 20px 0' }}>
         <div style={{ font: "500 10px/1 'Inter',sans-serif", letterSpacing: '.16em', color: '#75798c', marginBottom: 12 }}>WALLET</div>

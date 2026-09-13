@@ -12,18 +12,26 @@ import { gameRouter } from './modules/game/router';
 import { leaderboardRouter } from './modules/leaderboard/router';
 import { playersRouter } from './modules/players/router';
 import { questsRouter } from './modules/quests/router';
+import { skinsRouter } from './modules/skins/router';
 import { topupRouter } from './modules/topup/router';
 import { walletRouter } from './modules/wallet/router';
 
 export interface AppDeps {
   pool?: Pool;
   redis?: Redis;
+  /** Test hook — see src/modules/auth/router.ts for the production default. */
+  guestSignupsPerIpPerDay?: number;
 }
 
 export function createApp(deps: AppDeps = {}): Express {
   const pool = deps.pool ?? defaultPool;
   const redis = deps.redis ?? defaultRedis;
   const app = express();
+
+  // Render (and most hosts) put the app behind a proxy/load balancer —
+  // without this, req.ip is the proxy's address, not the real client's,
+  // which would make IP-based rate limiting (guest signup, below) useless.
+  app.set('trust proxy', true);
 
   app.use(cors());
   app.use(express.json());
@@ -32,7 +40,12 @@ export function createApp(deps: AppDeps = {}): Express {
     res.json({ status: 'ok' });
   });
 
-  app.use('/api/auth', authRouter(pool));
+  app.use(
+    '/api/auth',
+    deps.guestSignupsPerIpPerDay !== undefined
+      ? authRouter(pool, redis, deps.guestSignupsPerIpPerDay)
+      : authRouter(pool, redis),
+  );
   app.use('/api/players', playersRouter(pool));
   app.use('/api/game', gameRouter(pool, redis));
   app.use('/api/leaderboard', leaderboardRouter(pool, redis));
@@ -40,6 +53,7 @@ export function createApp(deps: AppDeps = {}): Express {
   app.use('/api/dailies', dailiesRouter(pool));
   app.use('/api/topup', topupRouter(pool));
   app.use('/api/wallet', walletRouter(pool));
+  app.use('/api/skins', skinsRouter(pool));
   app.use('/api/admin', adminRouter(pool));
 
   app.use(notFoundHandler);

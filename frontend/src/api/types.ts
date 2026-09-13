@@ -7,7 +7,19 @@ export interface PlayerDTO {
   bestScore: number;
   bestDistance: number;
   runsCount: number;
+  equippedSkinId: string | null;
   createdAt: string;
+}
+
+export interface CubeSkinDTO {
+  id: string;
+  code: string;
+  name: string;
+  priceCubes: number;
+  topColor: string;
+  leftColor: string;
+  rightColor: string;
+  owned: boolean;
 }
 
 export interface StartSessionResponse {

@@ -1,4 +1,5 @@
 import type {
+  CubeSkinDTO,
   DailiesResponse,
   EndSessionResponse,
   FutureTokenResponse,
@@ -114,4 +115,11 @@ export const api = {
   topupOrders: () => request<{ orders: TopupOrderDTO[] }>('/api/topup/orders'),
 
   futureToken: () => request<FutureTokenResponse>('/api/wallet/future-token'),
+
+  skins: () => request<{ skins: CubeSkinDTO[] }>('/api/skins'),
+
+  purchaseSkin: (id: string) =>
+    request<{ skin: CubeSkinDTO; player: PlayerDTO }>(`/api/skins/${id}/purchase`, { method: 'POST' }),
+
+  equipSkin: (id: string) => request<{ player: PlayerDTO }>(`/api/skins/${id}/equip`, { method: 'POST' }),
 };

@@ -4,8 +4,9 @@ import { api } from '../api/client';
 import type { EndSessionResponse, MyRank } from '../api/types';
 import BottomNav from '../components/BottomNav';
 import CubeIcon from '../components/CubeIcon';
+import CubeRunner from '../components/CubeRunner';
 import MobileScreen from '../components/MobileScreen';
-import runnerImg from '../assets/oops-runner.png';
+import { useEquippedSkin } from '../hooks/useEquippedSkin';
 import { useAuth } from '../state/AuthContext';
 
 export default function Result() {
@@ -13,6 +14,7 @@ export default function Result() {
   const navigate = useNavigate();
   const { player } = useAuth();
   const [rank, setRank] = useState<MyRank | null>(null);
+  const skin = useEquippedSkin();
 
   const result = (location.state as { result?: EndSessionResponse } | null)?.result;
 
@@ -31,7 +33,9 @@ export default function Result() {
       <div style={{ position: 'absolute', top: -90, right: -90, width: 340, height: 340, borderRadius: '50%', background: 'radial-gradient(circle,rgba(76,83,151,.55),transparent 68%)' }} />
 
       <div style={{ position: 'relative', padding: '64px 24px 0', display: 'flex', alignItems: 'center', gap: 16 }}>
-        <img className="lighten" src={runnerImg} alt="" style={{ width: 84, height: 100, objectFit: 'contain', flex: 'none' }} />
+        <div style={{ flex: 'none' }}>
+          <CubeRunner skin={skin} size={84} />
+        </div>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 8 }}>
             <span style={{ width: 4, height: 32, borderRadius: 2, background: '#b5abfc' }} />

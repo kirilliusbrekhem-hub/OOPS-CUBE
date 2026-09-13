@@ -17,4 +17,5 @@ export const env = {
   redisUrl: required('REDIS_URL', 'redis://localhost:6379'),
   jwtSecret: required('JWT_SECRET', 'dev-secret-change-me'),
   adminJwtSecret: required('ADMIN_JWT_SECRET', 'dev-admin-secret-change-me'),
+  guestSignupsPerIpPerDay: parseInt(process.env.GUEST_SIGNUPS_PER_IP_PER_DAY ?? '3', 10),
 };
